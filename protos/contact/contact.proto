@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package kritor.contact;
+
+option csharp_namespace = "Kritor.Contact";
+option java_multiple_files = true;
+option java_package = "io.kritor.contact";
+
+import "kritor/contact/contact_data.proto";
+
+service ContactService {
+  rpc GetProfileCard(ProfileCardRequest) returns (ProfileCard) {} // 获取名片（限好友）
+  rpc GetStrangerInfo(StrangerInfoRequest) returns (StrangerInfo) {} // 获取陌生人信息
+
+  rpc GetUid(GetUidRequest) returns (GetUidResponse) {} // 获取uid
+  rpc GetUinByUid(GetUinByUidRequest) returns (GetUinByUidResponse) {} // 获取uin
+
+  rpc SetProfileCard(SetProfileCardRequest) returns (SetProfileCardResponse) {} // 设置自己的名片
+
+  rpc IsBlackListUser(IsBlackListUserRequest) returns (IsBlackListUserResponse) {} // 是否是黑名单用户
+  rpc VoteUser(VoteUserRequest) returns (VoteUserResponse) {} // 点赞好友
+}
+
+message ProfileCardRequest {
+  oneof account {
+    uint64 account_uin = 1; // 可选，uid和uin必须提供一个，两个都提供优先uin
+    string account_uid = 2; // 可选，uid和uin必须提供一个，两个都提供优先uin
+  }
+}
+
+message StrangerInfoRequest {
+  uint64 uin = 1;
+}
+
+message GetUidRequest {
+  repeated uint64 uin = 1;
+}
+
+message GetUidResponse {
+  map<uint64, string> uid = 1;
+}
+
+message GetUinByUidRequest {
+  repeated string uid = 1;
+}
+
+message GetUinByUidResponse {
+  map<string, uint64> uin = 1;
+}
+
+message SetProfileCardRequest {
+  optional string nick_name = 1;
+  optional string company = 2;
+  optional string email = 3;
+  optional string college = 4;
+  optional string personal_note = 5;
+  optional uint32 birthday = 6;
+  optional uint32 age = 7;
+}
+
+message SetProfileCardResponse {
+}
+
+message IsBlackListUserRequest {
+  uint64 uin = 1;
+}
+
+message IsBlackListUserResponse {
+  bool is_black_list_user = 1;
+}
+
+message VoteUserRequest {
+  oneof account {
+    uint64 account_uin = 1; // 可选，uid和uin必须提供一个，两个都提供优先uin
+    string account_uid = 2; // 可选，uid和uin必须提供一个，两个都提供优先uin
+  }
+  optional uint32 vote_count = 3; // 可选，点赞数量，默认1
+}
+
+message VoteUserResponse {}

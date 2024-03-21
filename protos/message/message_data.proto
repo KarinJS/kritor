@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package kritor.message;
+
+option csharp_namespace = "Kritor.Message";
+option java_multiple_files = true;
+option java_package = "io.kritor.message";
+
+import "kritor/message/scene.proto";
+import "kritor/message/comm_message.proto";
+
+message EssenceMessage {
+  uint64 sender_uin = 1;
+  string sender_nick = 2;
+  uint32 msg_time = 3;
+  uint64 operator_uin = 4;
+  string operator_nick = 5;
+  uint32 operation_time = 6;
+  uint64 message_id = 7;
+  uint64 message_seq = 8;
+  string json_elements = 9;
+}

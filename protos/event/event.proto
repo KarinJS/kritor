@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package kritor.event;
+
+option csharp_namespace = "Kritor.Event";
+option java_multiple_files = true;
+option java_package = "io.kritor.event";
+
+import "kritor/event/event_data.proto";
+
+service EventService {
+  rpc RegisterActiveListener(RequestPushEvent) returns (stream EventStructure) {} // 主动RPC推送器
+
+  rpc RegisterPassiveListener(stream EventStructure) returns (RequestPushEvent) {} // 被动RPC监听器
+}

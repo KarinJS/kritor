@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package kritor.qsign;
+
+option csharp_namespace = "Kritor.Developer";
+option java_multiple_files = true;
+option java_package = "io.kritor.developer";
+
+service DeveloperService {
+  rpc Sign(SignRequest) returns (SignResponse);
+  rpc Energy(EnergyRequest) returns (EnergyResponse);
+  rpc SendPacket(SendPacketRequest) returns (SendPacketResponse);
+}
+
+message SignRequest {
+  string uin = 1;
+  string command = 2;
+  uint32 seq = 3;
+  bytes buffer = 4;
+  optional string qua = 6;
+}
+
+message SignResponse {
+  bytes sign = 1;
+  bytes token = 2;
+  bytes extra = 3;
+}
+
+message EnergyRequest {
+  string data = 2;
+  bytes salt = 3;
+}
+
+message EnergyResponse {
+  bytes result = 1;
+}
+
+message SendPacketRequest {
+  string command = 1;
+  bytes request_buffer = 2;
+  bool is_protobuf = 3;
+  map<string, string> attrs = 4;
+}
+
+message SendPacketResponse {
+  bool is_success = 1;
+  bytes response_buffer = 2;
+}

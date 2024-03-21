@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package kritor.event;
+
+option csharp_namespace = "Kritor.Event";
+option java_multiple_files = true;
+option java_package = "io.kritor.event";
+
+import "kritor/event/comm_request.proto";
+
+enum RequestType {
+  FRIEND_APPLY = 0;
+  GROUP_APPLY = 1;
+  INVITED_GROUP = 2;
+}
+
+message RequestsEvent {
+  RequestType type = 1;
+  uint32 time  = 2;
+  FriendApplyRequest friend_apply = 3;
+  GroupApplyRequest group_apply = 4;
+  InvitedGroupRequest invited_group = 5;
+}

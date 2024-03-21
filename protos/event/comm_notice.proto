@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+package kritor.event;
+
+option csharp_namespace = "Kritor.Event";
+option java_multiple_files = true;
+option java_package = "io.kritor.event";
+
+message FriendPokeNotice {
+  uint64 operator = 1;
+  uint64 target = 2;
+  string action = 3;
+  string suffix = 4;
+  string action_image = 5;
+}
+
+message FriendRecallNotice {
+  uint64 operator = 1;
+  uint64 message_id = 2;
+  string tip_text = 3;
+}
+
+message GroupUniqueTitleChangedNotice {
+  uint64 target = 1;
+  string title = 2;
+  uint64 group_id = 3;
+}
+
+message EssenceMessageNotice {
+  uint64 group_id = 1;
+  uint64 sender = 2;
+  uint64 operator = 3;
+  uint64 message_id = 4;
+  uint32 sub_type = 5;
+}
+
+message GroupPokeNotice {
+  uint64 operator = 1;
+  uint64 target = 2;
+  string action = 3;
+  string suffix = 4;
+  string action_image = 5;
+  uint64 group_id = 6;
+}
+
+enum GroupMemberIncreasedType {
+  APPROVE = 0;
+  INVITE = 1;
+}
+
+message GroupMemberIncreasedNotice {
+  uint64 group_id = 1;
+  string operator_uid = 2;
+  uint64 operator_uin = 3;
+  string target_uid = 4;
+  uint64 target_uin = 5;
+  GroupMemberIncreasedType type = 6;
+}
+
+enum GroupMemberDecreasedType {
+  KICK = 0;
+  LEAVE = 1;
+  KICK_ME = 2;
+}
+
+message GroupMemberDecreasedNotice {
+  uint64 group_id = 1;
+  string operator_uid = 2;
+  uint64 operator_uin = 3;
+  string target_uid = 4;
+  uint64 target_uin = 5;
+  GroupMemberDecreasedType type = 6;
+}
+
+message GroupAdminChangedNotice {
+  uint64 group_id = 1;
+  string target_uid = 4;
+  uint64 target_uin = 5;
+  bool is_admin = 6;
+}
+
+enum GroupMemberBanType {
+  LIFT_BAN = 0;
+  BAN = 1;
+}
+
+message GroupMemberBannedNotice {
+  uint64 group_id = 1;
+  string operator_uid = 2;
+  uint64 operator_uin = 3;
+  string target_uid = 4;
+  uint64 target_uin = 5;
+  int32 duration = 6;
+  GroupMemberBanType type = 7;
+}
+
+message GroupRecallNotice {
+  uint64 group_id = 1;
+  uint64 message_id = 2;
+  string tip_text = 3;
+  uint64 operator_uin = 4;
+  string operator_uid = 5;
+  uint64 target_uin = 6;
+  string target_uid = 7;
+  uint64 message_seq = 8;
+}
+
+message GroupSignNotice {
+  uint64 group_id = 1;
+  uint64 target_uin = 5;
+  string action = 6;
+  string suffix = 7;
+  string rank_image = 8;
+}
+
+message GroupWholeBanNotice {
+  uint64 group_id = 1;
+  uint64 operator = 3;
+  bool is_whole_ban = 2;
+}
+
+message FriendFileComeNotice {
+  uint64 operator = 1;
+  string file_id = 2;
+  string file_sub_id = 3;
+  string file_name = 4;
+  uint64 file_size = 5;
+  uint32 expire_time = 6;
+  string url = 7;
+}
+
+message GroupFileComeNotice {
+  uint64 group_id = 8;
+  uint64 operator = 1;
+  string file_id = 2;
+  string file_sub_id = 3;
+  string file_name = 4;
+  uint64 file_size = 5;
+  uint32 expire_time = 6;
+  int32 biz = 7;
+  string url = 9;
+}

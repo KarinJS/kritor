@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+package kritor.message;
+
+option csharp_namespace = "Kritor.Message";
+option java_multiple_files = true;
+option java_package = "io.kritor.message";
+
+import "kritor/message/scene.proto";
+import "kritor/message/comm_message.proto";
+import "kritor/message/message_data.proto";
+
+service MessageService {
+  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {} // 发送消息
+  rpc SendMessageByResId(SendMessageByResIdRequest) returns (SendMessageByResIdResponse) {} // 通过资源ID发送消息(转发消息
+  rpc ClearMessages(ClearMessagesRequest) returns (ClearMessagesResponse) {} // 清空本地聊天记录
+  rpc RecallMessage(RecallMessageRequest) returns (RecallMessageResponse) {} // 撤回消息
+  rpc SetMessageCommentEmoji(SetMessageCommentEmojiRequest) returns (SetMessageCommentEmojiResponse) {} // 设置消息评论表情
+
+  rpc GetForwardMessages(GetForwardMessagesRequest) returns (GetForwardMessagesResponse) {} // 获取转发消息
+
+  rpc GetMessage(GetMessageRequest) returns (GetMessageResponse) {} // 获取消息
+  rpc GetMessageBySeq(GetMessageBySeqRequest) returns (GetMessageBySeqResponse) {} // 获取消息
+  rpc GetHistoryMessage(GetHistoryMessageRequest) returns (GetHistoryMessageResponse) {} // 获取历史消息
+
+  rpc DeleteEssenceMsg(DeleteEssenceMsgRequest) returns (DeleteEssenceMsgResponse) {} // 删除精华消息
+  rpc GetEssenceMessages(GetEssenceMessagesRequest) returns (GetEssenceMessagesResponse) {} // 获取精华消息
+  rpc SetEssenceMessage(SetEssenceMessageRequest) returns (SetEssenceMessageResponse) {} // 设置精华消息
+}
+
+message SendMessageRequest {
+  Contact contact = 1; // 发送目标
+  repeated Element elements = 2; // 发的什么东西
+  optional uint32 retry_count = 3; // 重试次数
+}
+
+message SendMessageResponse {
+  uint64 message_id = 1; // 发送成功后的消息ID
+  uint32 message_time = 2; // 发送时间
+}
+
+message SendMessageByResIdRequest {
+  string res_id = 1; // 资源ID
+  Contact contact = 2; // 发送目标
+  optional uint32 retry_count = 3; // 重试次数
+}
+
+message SendMessageByResIdResponse {
+  uint64 message_id = 1; // 发送成功后的消息ID
+  uint32 message_time = 2; // 发送时间
+}
+
+message ClearMessagesRequest {
+  Contact contact = 1; // 要清空的目标
+}
+
+message ClearMessagesResponse {}
+
+message RecallMessageRequest {
+  Contact contact = 1; // 要撤回的目标，私聊则为对方，而不是写自己
+  uint64 message_id = 2; // 要撤回的消息ID，消息id固有格式：前32bit为时间戳，后32bit为扩展字段，可携带聊天类型等各种信息
+}
+
+message RecallMessageResponse {
+}
+
+message SetMessageCommentEmojiRequest {
+  Contact contact = 1;
+  uint64 message_id = 2; // 要设置的消息ID
+  uint32 face_id = 3; // 表情ID
+  optional bool is_comment = 4; // 是否是评论,如果是false，则为撤销
+}
+
+message SetMessageCommentEmojiResponse {
+}
+
+message GetForwardMessagesRequest {
+  string res_id = 1; // 资源ID
+}
+
+message GetForwardMessagesResponse {
+  repeated MessageBody messages = 1; // 获取到的消息
+}
+
+message GetMessageRequest {
+  Contact contact = 1; // 要获取的目标
+  uint64 message_id = 2; // 要获取的消息ID
+}
+
+message GetMessageResponse {
+  MessageBody message = 1; // 获取到的消息
+}
+
+message GetMessageBySeqRequest {
+  Contact contact = 1; // 要获取的目标
+  uint64 message_seq = 2; // 要获取的消息序号
+}
+
+message GetMessageBySeqResponse {
+  MessageBody message = 1; // 获取到的消息
+}
+
+message GetHistoryMessageRequest {
+  Contact contact = 1; // 要获取的目标
+  optional uint64 start_message_id = 2; // 起始消息ID 默认最新一条开始
+  optional uint32 count = 3; // 获取数量 默认10
+}
+
+message GetHistoryMessageResponse {
+  repeated MessageBody messages = 1; // 获取到的消息
+}
+
+message DeleteEssenceMsgRequest {
+  uint64 group_id = 1;
+  uint64 message_id = 2; // 要删除的消息ID
+}
+
+message DeleteEssenceMsgResponse {
+}
+
+message GetEssenceMessagesRequest {
+  uint64 group_id = 1;
+  uint32 page = 2;
+  uint32 page_size = 3;
+}
+
+message GetEssenceMessagesResponse {
+  repeated EssenceMessage essence_message = 1;
+}
+
+message SetEssenceMessageRequest {
+  uint64 group_id = 1;
+  uint64 message_id = 2; // 要设置为精华消息的消息ID
+}
+
+message SetEssenceMessageResponse {
+}

@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package kritor.event;
+
+option csharp_namespace = "Kritor.Event";
+option java_multiple_files = true;
+option java_package = "io.kritor.event";
+
+message FriendApplyRequest {
+  string applier_uid = 1;
+  uint64 applier_uin = 2; // 可能获取不到
+  string flag = 3;
+  string message = 4;
+}
+
+enum GroupApplyType {
+  GROUP_APPLY_ADD = 0;
+  GROUP_APPLY_INVITE = 1;
+}
+
+message GroupApplyRequest {
+  uint64 group_id = 1;
+  string applier_uid = 2;
+  uint64 applier_uin = 3; // 可能获取不到
+  string reason = 4;
+  string flag = 5;
+  GroupApplyType type = 6;
+}
+
+message InvitedGroupRequest {
+  uint64 group_id = 1;
+  string inviter_uid = 2;
+  uint64 inviter_uin = 3; // 可能获取不到
+  string flag = 4;
+}

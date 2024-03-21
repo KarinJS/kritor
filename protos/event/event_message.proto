@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package kritor.event;
+
+option csharp_namespace = "Kritor.Event";
+option java_multiple_files = true;
+option java_package = "io.kritor.event";
+
+import "kritor/event/comm_msg.proto";
+
+message MessageEvent {
+  uint32 time = 1;
+  Scene scene = 2;
+  uint64 message_id = 3;
+  uint64 message_seq = 4;
+  Contact contact = 5; // 从什么地方收到的信息
+  Sender sender = 6; // 谁发的
+  repeated Element elements = 7; // 发的什么东西
+
+  optional int32 temp_source = 50; // 临时消息来源
+}
+
+

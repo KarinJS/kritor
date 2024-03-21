@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package kritor.message;
+
+option csharp_namespace = "Kritor.Message";
+option java_multiple_files = true;
+option java_package = "io.kritor.message";
+
+import "kritor/message/scene.proto";
+import "kritor/message/comm_message.proto";
+import "kritor/message/foward_message_data.proto";
+
+service ForwardMessageService {
+  rpc ForwardMessage(ForwardMessageRequest) returns (ForwardMessageResponse); // 合并转发消息
+}
+
+message ForwardMessageRequest {
+  Contact contact = 1;
+  optional uint32 retry_count = 2;
+  repeated ForwardMessageBody messages = 3;
+  optional bool only_upload = 4; // 只上传不发送
+}
+
+message ForwardMessageResponse {
+  optional uint64 message_id = 1; // 当只上传时，这里啥也没有
+  string res_id = 2;
+}

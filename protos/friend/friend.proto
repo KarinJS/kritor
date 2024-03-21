@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package kritor.friend;
+
+option csharp_namespace = "Kritor.Friend";
+option java_multiple_files = true;
+option java_package = "io.kritor.friend";
+
+import "kritor/friend/firend_data.proto";
+
+service FriendService {
+  rpc GetFriendList (GetFriendListRequest) returns (GetFriendListResponse); // 获取好友列表
+}
+
+message GetFriendListRequest {
+  optional bool refresh = 1; // 是否刷新好友列表
+}
+
+message GetFriendListResponse {
+  repeated FriendData friendList = 1;
+}
