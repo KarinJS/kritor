@@ -6,9 +6,9 @@ option csharp_namespace = "Kritor.Event";
 option java_multiple_files = true;
 option java_package = "io.kritor.event";
 
-import "kritor/event/event_message.proto";
-import "kritor/event/event_request.proto";
-import "kritor/event/event_notice.proto";
+import "event/event_message.proto";
+import "event/event_request.proto";
+import "event/event_notice.proto";
 
 enum EventType {
   EVENT_TYPE_CORE_EVENT = 0;

@@ -6,8 +6,8 @@ option csharp_namespace = "Kritor.Message";
 option java_multiple_files = true;
 option java_package = "io.kritor.message";
 
-import "kritor/message/scene.proto";
-import "kritor/message/comm_message.proto";
+import "message/scene.proto";
+import "message/comm_message.proto";
 
 message EssenceMessage {
   uint64 sender_uin = 1;

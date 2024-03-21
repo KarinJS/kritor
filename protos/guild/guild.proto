@@ -6,7 +6,7 @@ option csharp_namespace = "Kritor.Guild";
 option java_multiple_files = true;
 option java_package = "io.kritor.guild";
 
-import "kritor/guild/guild_data.proto";
+import "guild/guild_data.proto";
 
 service GuildService {
   rpc GetBotInfo(GetBotInfoRequest) returns (GetBotInfoResponse); // 获取BOT资料

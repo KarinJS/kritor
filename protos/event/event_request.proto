@@ -6,7 +6,7 @@ option csharp_namespace = "Kritor.Event";
 option java_multiple_files = true;
 option java_package = "io.kritor.event";
 
-import "kritor/event/comm_request.proto";
+import "event/comm_request.proto";
 
 enum RequestType {
   FRIEND_APPLY = 0;

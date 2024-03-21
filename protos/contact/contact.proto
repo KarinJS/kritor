@@ -6,7 +6,7 @@ option csharp_namespace = "Kritor.Contact";
 option java_multiple_files = true;
 option java_package = "io.kritor.contact";
 
-import "kritor/contact/contact_data.proto";
+import "contact/contact_data.proto";
 
 service ContactService {
   rpc GetProfileCard(ProfileCardRequest) returns (ProfileCard) {} // 获取名片（限好友）

@@ -6,7 +6,7 @@ option csharp_namespace = "Kritor.File";
 option java_multiple_files = true;
 option java_package = "io.kritor.file";
 
-import "kritor/file/file_data.proto";
+import "file/file_data.proto";
 
 service GroupFileService {
   rpc CreateFolder(CreateFolderRequest) returns (CreateFolderResponse); // 创建文件夹
