@@ -6,8 +6,6 @@ option csharp_namespace = "Kritor.Group";
 option java_multiple_files = true;
 option java_package = "io.kritor.group";
 
-import "message/comm_message.proto";
-
 message GroupInfo {
   uint64 group_id = 1;
   string group_name = 2;

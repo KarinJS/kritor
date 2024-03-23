@@ -6,8 +6,8 @@ option csharp_namespace = "Kritor.Message";
 option java_multiple_files = true;
 option java_package = "io.kritor.message";
 
+import "message/contact.proto";
 import "message/comm_message.proto";
-import "message/scene.proto";
 
 message ForwardSender {
   string uid = 1;
@@ -16,9 +16,10 @@ message ForwardSender {
 }
 
 message ForwardMessageBody {
-  Contact contact = 5;
-  ForwardSender sender = 1;
+  optional uint32 message_id = 1;
   optional uint32 message_time = 2;
   optional uint32 message_seq = 3;
-  repeated Element elements = 4; // 发的什么东西
+  Contact contact = 4;
+  ForwardSender sender = 5;
+  repeated Element elements = 6; // 发的什么东西
 }
