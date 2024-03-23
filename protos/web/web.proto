@@ -5,6 +5,7 @@ package kritor.web;
 option csharp_namespace = "Kritor.Web";
 option java_multiple_files = true;
 option java_package = "io.kritor.web";
+option go_package = "grpc/kritor/web";
 
 service WebService {
   rpc GetCookies(GetCookiesRequest) returns (GetCookiesResponse) {} // 获取通用cookie

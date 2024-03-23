@@ -5,6 +5,7 @@ package kritor.qsign;
 option csharp_namespace = "Kritor.Developer";
 option java_multiple_files = true;
 option java_package = "io.kritor.developer";
+option go_package = "grpc/kritor/developer";
 
 service DeveloperService {
   rpc Sign(SignRequest) returns (SignResponse);

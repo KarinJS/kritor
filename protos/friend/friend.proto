@@ -5,6 +5,7 @@ package kritor.friend;
 option csharp_namespace = "Kritor.Friend";
 option java_multiple_files = true;
 option java_package = "io.kritor.friend";
+option go_package = "grpc/kritor/friend";
 
 import "friend/firend_data.proto";
 
