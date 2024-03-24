@@ -1,16 +1,15 @@
 syntax = "proto3";
 
-package kritor.qsign;
+package kritor.developer;
 
 option csharp_namespace = "Kritor.Developer";
 option java_multiple_files = true;
 option java_package = "io.kritor.developer";
 option go_package = "grpc/kritor/developer";
 
-service DeveloperService {
+service QsignService {
   rpc Sign(SignRequest) returns (SignResponse);
   rpc Energy(EnergyRequest) returns (EnergyResponse);
-  rpc SendPacket(SendPacketRequest) returns (SendPacketResponse);
 }
 
 message SignRequest {
@@ -34,16 +33,4 @@ message EnergyRequest {
 
 message EnergyResponse {
   bytes result = 1;
-}
-
-message SendPacketRequest {
-  string command = 1;
-  bytes request_buffer = 2;
-  bool is_protobuf = 3;
-  map<string, string> attrs = 4;
-}
-
-message SendPacketResponse {
-  bool is_success = 1;
-  bytes response_buffer = 2;
 }

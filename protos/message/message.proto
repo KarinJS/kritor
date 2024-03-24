@@ -23,6 +23,9 @@ service MessageService {
   rpc GetMessageBySeq(GetMessageBySeqRequest) returns (GetMessageBySeqResponse) {} // 获取消息
   rpc GetHistoryMessage(GetHistoryMessageRequest) returns (GetHistoryMessageResponse) {} // 获取历史消息
 
+  rpc UploadForwardMessage(UploadForwardMessageRequest) returns (UploadForwardMessageResponse); // 上传合并转发消息
+  rpc DownloadForwardMessage(DownloadForwardMessageRequest) returns (DownloadForwardMessageResponse); // 下载合并转发消息
+
   rpc DeleteEssenceMsg(DeleteEssenceMsgRequest) returns (DeleteEssenceMsgResponse) {} // 删除精华消息
   rpc GetEssenceMessages(GetEssenceMessagesRequest) returns (GetEssenceMessagesResponse) {} // 获取精华消息
   rpc SetEssenceMessage(SetEssenceMessageRequest) returns (SetEssenceMessageResponse) {} // 设置精华消息
@@ -99,6 +102,24 @@ message GetHistoryMessageRequest {
 }
 
 message GetHistoryMessageResponse {
+  repeated kritor.event.MessageEvent messages = 1; // 获取到的消息
+}
+
+message UploadForwardMessageRequest {
+  Contact contact = 1;
+  optional uint32 retry_count = 2;
+  repeated ForwardMessageBody messages = 3;
+}
+
+message UploadForwardMessageResponse {
+  string res_id = 1;
+}
+
+message DownloadForwardMessageRequest {
+  string res_id = 1; // 资源ID
+}
+
+message DownloadForwardMessageResponse {
   repeated kritor.event.MessageEvent messages = 1; // 获取到的消息
 }
 

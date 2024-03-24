@@ -7,7 +7,7 @@ option java_multiple_files = true;
 option java_package = "io.kritor";
 option go_package = "grpc/kritor";
 
-service Authentication {
+service AuthenticationService {
   rpc Auth (AuthReq) returns (AuthRsp) {
   }
 

@@ -7,7 +7,7 @@ option java_multiple_files = true;
 option java_package = "io.kritor.core";
 option go_package = "grpc/kritor/core";
 
-service KritorService {
+service CoreService {
   rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {} // 获取Kritor版本
   rpc ClearCache(ClearCacheRequest) returns (ClearCacheResponse) {}
   rpc DownloadFile(DownloadFileRequest) returns (DownloadFileResponse) {} // 让Kritor下载文件到Kritor本地
