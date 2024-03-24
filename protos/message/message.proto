@@ -7,9 +7,10 @@ option java_multiple_files = true;
 option java_package = "io.kritor.message";
 option go_package = "grpc/kritor/message";
 
-import "message/scene.proto";
+import "message/contact.proto";
 import "message/comm_message.proto";
 import "message/message_data.proto";
+import "event/event_message.proto";
 
 service MessageService {
   rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {} // 发送消息
@@ -17,8 +18,6 @@ service MessageService {
   rpc ClearMessages(ClearMessagesRequest) returns (ClearMessagesResponse) {} // 清空本地聊天记录
   rpc RecallMessage(RecallMessageRequest) returns (RecallMessageResponse) {} // 撤回消息
   rpc SetMessageCommentEmoji(SetMessageCommentEmojiRequest) returns (SetMessageCommentEmojiResponse) {} // 设置消息评论表情
-
-  rpc GetForwardMessages(GetForwardMessagesRequest) returns (GetForwardMessagesResponse) {} // 获取转发消息
 
   rpc GetMessage(GetMessageRequest) returns (GetMessageResponse) {} // 获取消息
   rpc GetMessageBySeq(GetMessageBySeqRequest) returns (GetMessageBySeqResponse) {} // 获取消息
@@ -75,21 +74,13 @@ message SetMessageCommentEmojiRequest {
 message SetMessageCommentEmojiResponse {
 }
 
-message GetForwardMessagesRequest {
-  string res_id = 1; // 资源ID
-}
-
-message GetForwardMessagesResponse {
-  repeated MessageBody messages = 1; // 获取到的消息
-}
-
 message GetMessageRequest {
   Contact contact = 1; // 要获取的目标
   uint64 message_id = 2; // 要获取的消息ID
 }
 
 message GetMessageResponse {
-  MessageBody message = 1; // 获取到的消息
+  kritor.event.MessageEvent message = 1; // 获取到的消息
 }
 
 message GetMessageBySeqRequest {
@@ -98,7 +89,7 @@ message GetMessageBySeqRequest {
 }
 
 message GetMessageBySeqResponse {
-  MessageBody message = 1; // 获取到的消息
+  kritor.event.MessageEvent message = 1; // 获取到的消息
 }
 
 message GetHistoryMessageRequest {
@@ -108,7 +99,7 @@ message GetHistoryMessageRequest {
 }
 
 message GetHistoryMessageResponse {
-  repeated MessageBody messages = 1; // 获取到的消息
+  repeated kritor.event.MessageEvent messages = 1; // 获取到的消息
 }
 
 message DeleteEssenceMsgRequest {

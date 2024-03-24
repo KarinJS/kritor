@@ -7,9 +7,6 @@ option java_multiple_files = true;
 option java_package = "io.kritor.message";
 option go_package = "grpc/kritor/message";
 
-import "message/scene.proto";
-import "message/comm_message.proto";
-
 message EssenceMessage {
   uint64 sender_uin = 1;
   string sender_nick = 2;

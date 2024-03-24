@@ -7,23 +7,7 @@ option java_multiple_files = true;
 option java_package = "io.kritor.message";
 option go_package = "grpc/kritor/message";
 
-import "message/scene.proto";
-
-message MessageBody {
-  uint32 time = 1;
-  Scene scene = 2;
-  uint64 message_id = 3;
-  uint64 message_seq = 4;
-  Contact contact = 5; // 从什么地方收到的信息
-  Sender sender = 6; // 谁发的
-  repeated Element elements = 7; // 发的什么东西
-}
-
-message Sender {
-  string nick = 1;
-  string uid = 2;
-  optional uint64 uin = 3;
-}
+import "message/contact.proto";
 
 enum ElementType {
   TEXT = 0;
@@ -82,7 +66,6 @@ message Element {
     FileElement file = 24;
     MarkdownElement markdown = 25;
     ButtonElement button = 26;
-    NodeElement node = 99;
   }
 }
 
@@ -220,7 +203,7 @@ message MarketFaceElement {
 }
 
 message ForwardElement {
-  string id = 1;
+  string res_id = 1;
   string uniseq = 2;
   string summary = 3;
   string description = 4;
@@ -280,15 +263,11 @@ message Button {
   ButtonAction action = 3;
 }
 
-message Row {
+message ButtonRow {
   repeated Button buttons = 1;
 }
 
 message ButtonElement {
-  repeated Row rows = 1;
+  repeated ButtonRow rows = 1;
+  uint64 application_id = 2;
 }
-
-message NodeElement {
-  Contact scene = 1;
-  uint64 message_id = 2;
-} // 不支持发送

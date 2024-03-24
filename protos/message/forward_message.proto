@@ -7,22 +7,29 @@ option java_multiple_files = true;
 option java_package = "io.kritor.message";
 option go_package = "grpc/kritor/message";
 
-import "message/scene.proto";
-import "message/comm_message.proto";
-import "message/foward_message_data.proto";
+import "message/contact.proto";
+import "message/forward_message_data.proto";
+import "event/event_message.proto";
 
 service ForwardMessageService {
-  rpc ForwardMessage(ForwardMessageRequest) returns (ForwardMessageResponse); // 合并转发消息
+  rpc UploadForwardMessage(UploadForwardMessageRequest) returns (UploadForwardMessageResponse); // 上传合并转发消息
+  rpc DownloadForwardMessage(DownloadForwardMessageRequest) returns (DownloadForwardMessageResponse); // 下载合并转发消息
 }
 
-message ForwardMessageRequest {
+message UploadForwardMessageRequest {
   Contact contact = 1;
   optional uint32 retry_count = 2;
   repeated ForwardMessageBody messages = 3;
-  optional bool only_upload = 4; // 只上传不发送
 }
 
-message ForwardMessageResponse {
-  optional uint64 message_id = 1; // 当只上传时，这里啥也没有
-  string res_id = 2;
+message UploadForwardMessageResponse {
+  string res_id = 1;
+}
+
+message DownloadForwardMessageRequest {
+  string res_id = 1; // 资源ID
+}
+
+message DownloadForwardMessageResponse {
+  repeated kritor.event.MessageEvent messages = 1; // 获取到的消息
 }
