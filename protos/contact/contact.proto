@@ -5,6 +5,7 @@ package kritor.contact;
 option csharp_namespace = "Kritor.Contact";
 option java_multiple_files = true;
 option java_package = "io.kritor.contact";
+option go_package = "grpc/kritor/contact";
 
 import "contact/contact_data.proto";
 

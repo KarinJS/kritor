@@ -5,6 +5,7 @@ package kritor;
 option csharp_namespace = "Kritor";
 option java_multiple_files = true;
 option java_package = "io.kritor";
+option go_package = "grpc/kritor";
 
 import "comm_request.proto";
 

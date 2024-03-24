@@ -5,6 +5,7 @@ package kritor.guild;
 option csharp_namespace = "Kritor.Guild";
 option java_multiple_files = true;
 option java_package = "io.kritor.guild";
+option go_package = "grpc/kritor/guild";
 
 // 频道信息
 message GuildInfo {

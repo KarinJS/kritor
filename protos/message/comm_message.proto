@@ -5,6 +5,7 @@ package kritor.message;
 option csharp_namespace = "Kritor.Message";
 option java_multiple_files = true;
 option java_package = "io.kritor.message";
+option go_package = "grpc/kritor/message";
 
 import "message/contact.proto";
 
