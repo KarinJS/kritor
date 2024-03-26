@@ -17,8 +17,8 @@ service GuildService {
   rpc GetGuildMemberList(GetGuildMemberListRequest) returns (GetGuildMemberListResponse); // 获取频道成员列表
   rpc GetGuildMember(GetGuildMemberRequest) returns (GetGuildMemberResponse); // 单独获取频道成员资料
   rpc SendChannelMessage(SendChannelMessageRequest) returns (SendChannelMessageResponse); // 发送信息到子频道
-  rpc GetGuildFeeds(GetGuildFeedsRequest) returns (GetGuildFeedsResponse); // 获取频道帖子广场帖子
-  rpc GetGuildRoles(GetGuildRolesRequest) returns (GetGuildRolesResponse); // 获取频道角色列表
+  rpc GetGuildFeedList(GetGuildFeedListRequest) returns (GetGuildFeedListResponse); // 获取频道帖子广场帖子
+  rpc GetGuildRoleList(GetGuildRoleListRequest) returns (GetGuildRoleListResponse); // 获取频道角色列表
   rpc DeleteGuildRole(DeleteGuildRoleRequest) returns (DeleteGuildRoleResponse); // 删除频道身份组
   rpc SetGuildMemberRole(SetGuildMemberRoleRequest) returns (SetGuildMemberRoleResponse); // 设置用户在频道中的角色
   rpc UpdateGuildRole(UpdateGuildRoleRequest) returns (UpdateGuildRoleResponse); // 修改频道角色
@@ -72,7 +72,7 @@ message GetGuildChannelListRequest {
 
 // 获取子频道列表响应
 message GetGuildChannelListResponse {
-  repeated ChannelInfo get_guild_list = 1; // 子频道列表
+  repeated ChannelInfo channels_info = 1; // 子频道列表
 }
 
 // 获取频道成员列表请求
@@ -85,7 +85,7 @@ message GetGuildMemberListRequest {
 
 // 获取频道成员列表响应
 message GetGuildMemberListResponse {
-  repeated MemberInfo get_member_list = 1; // 成员列表
+  repeated MemberInfo members_info = 1; // 成员列表
   string next_token = 2; // 下一页的token
   bool finished = 3; // 是否已经获取完所有成员
 }
@@ -112,29 +112,29 @@ message SendChannelMessageRequest {
 
 // 发送信息到子频道响应
 message SendChannelMessageResponse {
-  uint64 message_id = 1; // 消息ID
+  string message_id = 1; // 消息ID
   int64 time = 2; // 时间
 }
 
 // 获取频道帖子广场帖子请求
-message GetGuildFeedsRequest {
+message GetGuildFeedListRequest {
   uint64 guild_id = 1; // 频道ID
   uint32 from = 2; // 开始获取的位置
 }
 
 // 获取频道帖子广场帖子响应
-message GetGuildFeedsResponse {
+message GetGuildFeedListResponse {
   bytes data = 1; // 该请求携带了大量原生响应数据，无法详细介绍，请自行测试！
 }
 
 // 获取频道角色列表请求
-message GetGuildRolesRequest {
+message GetGuildRoleListRequest {
   uint64 guild_id = 1; // 频道ID
 }
 
 // 获取频道角色列表响应
-message GetGuildRolesResponse {
-  repeated RolesInfo get_role_list = 1; // 角色列表
+message GetGuildRoleListResponse {
+  repeated RoleInfo roles_info = 1; // 角色列表
 }
 
 // 删除频道身份组请求
@@ -148,13 +148,12 @@ message DeleteGuildRoleResponse {
   // 无返回值
 }
 
-// 设置用户在频道中的角色请求
+// 设置用户在频道中的角色
 message SetGuildMemberRoleRequest {
   uint64 guild_id = 1; // 频道ID
   uint64 role_id = 2; // 角色ID
   bool set = 3; // 设置还是移除，默认false
-  repeated string users = 4; // 批量设置用户s
-  int64 tiny_id = 5; // 单独设置某个用户的身份
+  repeated string tiny_ids = 4; // 用户tinyId列表
 }
 
 // 设置用户在频道中的角色响应
@@ -180,7 +179,6 @@ message CreateGuildRoleRequest {
   uint64 guild_id = 1; // 频道ID
   string name = 2; // 名称
   int64 color = 3; // 颜色ARGB
-  repeated int64 initial_users = 4; // 默认身份组成员
 }
 
 // 创建频道角色响应

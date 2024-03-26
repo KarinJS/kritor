@@ -149,14 +149,14 @@ message GetGroupListRequest {
 }
 
 message GetGroupListResponse {
-  repeated GroupInfo group_info = 1; // 群组信息
+  repeated GroupInfo groups_info = 1; // 群组信息
 }
 
 message GetGroupMemberInfoRequest {
   uint64 group_id = 1; // 群组ID
   oneof target{
-    string uid = 2; // 目标uid
-    uint64 uin = 3; // 目标uin
+    string target_uid = 2; // 获取目标uid
+    uint64 target_uin = 3; // 获取目标uin
   }
   optional bool refresh = 4; // 是否刷新缓存
 }
@@ -171,7 +171,7 @@ message GetGroupMemberListRequest {
 }
 
 message GetGroupMemberListResponse {
-  repeated GroupMemberInfo group_member_info = 1; // 群成员信息
+  repeated GroupMemberInfo group_members_info = 1; // 群成员信息
 }
 
 message GetProhibitedUserListRequest {
@@ -179,7 +179,7 @@ message GetProhibitedUserListRequest {
 }
 
 message GetProhibitedUserListResponse {
-  repeated ProhibitedUserInfo prohibited_user_info = 1; // 禁言用户信息
+  repeated ProhibitedUserInfo prohibited_users_info = 1; // 禁言用户信息
 }
 
 message GetRemainCountAtAllRequest {
@@ -187,8 +187,8 @@ message GetRemainCountAtAllRequest {
 }
 
 message GetRemainCountAtAllResponse {
-  uint32 remain_count_for_group = 1; // 剩余次数对于全群
-  bool access_at_all = 2;
+  bool access_at_all = 1;
+  uint32 remain_count_for_group = 2; // 剩余次数对于全群
   uint32 remain_count_for_self = 3; // 剩余次数对于自己
 }
 
@@ -206,5 +206,5 @@ message GetGroupHonorRequest {
 }
 
 message GetGroupHonorResponse {
-  repeated GroupHonorInfo group_honor_info = 1; // 群荣誉信息
+  repeated GroupHonorInfo group_honors_info = 1; // 群荣誉信息
 }

@@ -18,5 +18,5 @@ message GetFriendListRequest {
 }
 
 message GetFriendListResponse {
-  repeated FriendData friendList = 1;
+  repeated FriendInfo friends_info = 1;
 }

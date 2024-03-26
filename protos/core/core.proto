@@ -8,27 +8,20 @@ option java_package = "io.kritor.core";
 option go_package = "grpc/kritor/core";
 
 service CoreService {
-  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {} // 获取Kritor版本
-  rpc ClearCache(ClearCacheRequest) returns (ClearCacheResponse) {}
-  rpc DownloadFile(DownloadFileRequest) returns (DownloadFileResponse) {} // 让Kritor下载文件到Kritor本地
+  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse); // 获取Kritor版本
+  rpc DownloadFile(DownloadFileRequest) returns (DownloadFileResponse); // 让Kritor下载文件到Kritor本地
 
-  rpc GetCurrentAccount(GetCurrentAccountRequest) returns (GetCurrentAccountResponse) {} // 获取当前账户信息
-
-  rpc SwitchAccount(SwitchAccountRequest) returns (SwitchAccountResponse) {} // 切换账户
-
-  rpc GetDeviceBattery(GetDeviceBatteryRequest) returns (GetDeviceBatteryResponse) {} // 获取设备电量
+  rpc GetCurrentAccount(GetCurrentAccountRequest) returns (GetCurrentAccountResponse); // 获取当前账户信息
+  rpc SwitchAccount(SwitchAccountRequest) returns (SwitchAccountResponse); // 切换账户
 }
 
-message GetVersionRequest {}
+message GetVersionRequest {
+}
 
 message GetVersionResponse {
   string version = 1; // Kritor版本
   string app_name = 2;
 }
-
-message ClearCacheRequest {}
-
-message ClearCacheResponse {}
 
 message DownloadFileRequest {
   optional string url = 1; // 下载文件的URL 二选一
@@ -44,7 +37,8 @@ message DownloadFileResponse {
   string file_md5 = 2; // 下载文件的MD5
 }
 
-message GetCurrentAccountRequest {}
+message GetCurrentAccountRequest {
+}
 
 message GetCurrentAccountResponse {
   string account_uid = 1; // 当前账户
@@ -60,12 +54,5 @@ message SwitchAccountRequest {
   string super_ticket = 3; // 凭证
 }
 
-message SwitchAccountResponse {}
-
-message GetDeviceBatteryRequest {}
-
-message GetDeviceBatteryResponse {
-  uint32 battery = 1; // 设备电量
-  uint32 scale = 2;
-  uint32 status = 3;
+message SwitchAccountResponse {
 }

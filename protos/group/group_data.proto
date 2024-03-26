@@ -68,7 +68,7 @@ message GroupMemberInfo {
   uint64 shut_up_timestamp = 11;
 
   optional uint32 distance = 100;
-  repeated uint32 honor = 101;
+  repeated uint32 honors = 101;
   optional bool unfriendly = 102;
   optional bool card_changeable = 103;
 }

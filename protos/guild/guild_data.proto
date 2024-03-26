@@ -70,34 +70,34 @@ message MemberProfile {
   string nickname = 2; // 用户昵称
   string avatar_url = 3; // 用户头像
   uint64 join_time = 4; // 加入时间
-  repeated RoleInfo roles = 5; // 用户角色
+  repeated MemberRoleInfo roles_info = 5; // 用户角色
 }
 
-// 用户角色信息
-message RoleInfo {
-  uint64 role_id = 1; // 用户角色ID
-  string role_name = 2; // 用户角色名称
-  uint64 color = 3; // 用户角色颜色
-  repeated PermissionInfo permissions = 4; // 用户角色权限
-  uint64 type = 5; // 用户角色类型
-  string display_name = 6; // 用户角色显示名称
-}
-
-// 用户角色权限信息
+// 身份组权限信息
 message PermissionInfo {
   uint64 root_id = 1; // 权限根ID
   repeated uint64 child_ids = 2; // 权限子ID
 }
 
-// 频道身份组详细信息
-message RolesInfo  {
+// 用户身份组信息
+message MemberRoleInfo {
   uint64 role_id = 1; // 身份组ID
   string role_name = 2; // 身份组名称
-  uint64 argb_color = 3; // 身份组颜色
-  bool disabled = 4; // 是否禁用
-  bool independent = 5; // 是否独立
-  uint64 max_count = 6; // 最大成员数
-  uint64 member_count = 7; // 成员数
-  bool owned = 8; // 是否拥有
-  repeated PermissionInfo permissions = 9; // 权限
+  uint64 color = 3; // 身份组颜色
+  repeated PermissionInfo permissions = 4; // 身份组权限
+  uint64 type = 5; // 用户角色类型
+  string display_name = 6; // 用户角色显示名称
+}
+
+// 频道身份组详细信息
+message RoleInfo  {
+  uint64 role_id = 1; // 身份组ID
+  string role_name = 2; // 身份组名称
+  uint64 color = 3; // 身份组颜色
+  repeated PermissionInfo permissions = 4; // 身份组权限
+  bool disabled = 5; // 是否禁用
+  bool independent = 6; // 是否独立
+  uint64 max_count = 7; // 最大成员数
+  uint64 member_count = 8; // 成员数
+  bool owned = 9; // 是否拥有
 }

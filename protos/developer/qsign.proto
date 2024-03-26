@@ -36,9 +36,9 @@ message EnergyResponse {
   bytes result = 1;
 }
 
-message GetCmdWhitelist {
+message GetCmdWhitelistRequest {
 }
 
 message GetCmdWhitelistResponse {
-  repeated string result = 1;
+  repeated string commands = 1;
 }

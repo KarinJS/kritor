@@ -9,28 +9,24 @@ option go_package = "grpc/kritor/event";
 
 message FriendApplyRequest {
   string applier_uid = 1;
-  optional uint64 applier_uin = 2; // 可能获取不到
+  uint64 applier_uin = 2;
   string flag = 3;
   string message = 4;
-}
-
-enum GroupApplyType {
-  GROUP_APPLY_ADD = 0;
-  GROUP_APPLY_INVITE = 1;
 }
 
 message GroupApplyRequest {
   uint64 group_id = 1;
   string applier_uid = 2;
-  optional uint64 applier_uin = 3; // 可能获取不到
-  string reason = 4;
-  string flag = 5;
-  GroupApplyType type = 6;
+  uint64 applier_uin = 3;
+  string inviter_uid = 4;
+  uint64 inviter_uin = 5;
+  string reason = 6;
+  string flag = 7;
 }
 
-message InvitedGroupRequest {
+message InvitedJoinGroupRequest {
   uint64 group_id = 1;
   string inviter_uid = 2;
-  optional uint64 inviter_uin = 3; // 可能获取不到
+  uint64 inviter_uin = 3;
   string flag = 4;
 }

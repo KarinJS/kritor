@@ -7,10 +7,31 @@ option java_multiple_files = true;
 option java_package = "io.kritor.event";
 option go_package = "grpc/kritor/event";
 
-import "event/event_data.proto";
+import "common/message_data.proto";
+import "event/event_notice.proto";
+import "event/event_request.proto";
 
 service EventService {
-  rpc RegisterActiveListener(RequestPushEvent) returns (stream EventStructure) {} // 主动RPC推送器
+  rpc RegisterActiveListener(RequestPushEvent) returns (stream EventStructure); // 主动RPC推送器
+  rpc RegisterPassiveListener(stream EventStructure) returns (RequestPushEvent); // 被动RPC监听器
+}
 
-  rpc RegisterPassiveListener(stream EventStructure) returns (RequestPushEvent) {} // 被动RPC监听器
+enum EventType {
+  EVENT_TYPE_CORE_EVENT = 0;
+  EVENT_TYPE_message = 1;
+  EVENT_TYPE_NOTICE = 2;
+  EVENT_TYPE_REQUEST = 3;
+}
+
+message RequestPushEvent {
+  EventType type = 1;
+}
+
+message EventStructure {
+  EventType type = 1;
+  oneof event {
+    kritor.common.PushMessageBody message = 2;
+    RequestsEvent request = 3;
+    NoticeEvent notice = 4;
+  }
 }

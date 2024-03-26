@@ -7,18 +7,21 @@ option java_multiple_files = true;
 option java_package = "io.kritor.event";
 option go_package = "grpc/kritor/event";
 
-import "event/comm_request.proto";
-
-enum RequestType {
-  FRIEND_APPLY = 0;
-  GROUP_APPLY = 1;
-  INVITED_GROUP = 2;
-}
+import "event/request_data.proto";
 
 message RequestsEvent {
+  enum RequestType {
+    FRIEND_APPLY = 0;
+    GROUP_APPLY = 1;
+    INVITED_GROUP = 2;
+  }
+  
   RequestType type = 1;
   uint32 time  = 2;
-  FriendApplyRequest friend_apply = 3;
-  GroupApplyRequest group_apply = 4;
-  InvitedGroupRequest invited_group = 5;
+
+  oneof request {
+    FriendApplyRequest friend_apply = 3;
+    GroupApplyRequest group_apply = 4;
+    InvitedJoinGroupRequest invited_group = 5;
+  }
 }

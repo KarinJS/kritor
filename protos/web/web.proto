@@ -8,10 +8,10 @@ option java_package = "io.kritor.web";
 option go_package = "grpc/kritor/web";
 
 service WebService {
-  rpc GetCookies(GetCookiesRequest) returns (GetCookiesResponse) {} // 获取通用cookie
-  rpc GetCredentials(GetCredentialsRequest) returns (GetCredentialsResponse) {} // 获取bkn参数与cookie
-  rpc GetCSRFToken(GetCSRFTokenRequest) returns (GetCSRFTokenResponse) {} // 获取bkn
-  rpc GetHttpCookies(GetHttpCookiesRequest) returns (GetHttpCookiesResponse) {} // 获取http请求的cookie
+  rpc GetCookies(GetCookiesRequest) returns (GetCookiesResponse); // 获取通用cookie
+  rpc GetCredentials(GetCredentialsRequest) returns (GetCredentialsResponse); // 获取bkn参数与cookie
+  rpc GetCSRFToken(GetCSRFTokenRequest) returns (GetCSRFTokenResponse); // 获取bkn
+  rpc GetHttpCookies(GetHttpCookiesRequest) returns (GetHttpCookiesResponse); // 获取http请求的cookie
 }
 
 message GetCookiesRequest {

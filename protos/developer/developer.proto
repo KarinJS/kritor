@@ -10,6 +10,10 @@ option go_package = "grpc/kritor/developer";
 service DeveloperService {
   rpc Shell(ShellRequest) returns (ShellResponse);
   rpc GetLog(GetLogRequest) returns (GetLogResponse);
+  rpc ClearCache(ClearCacheRequest) returns (ClearCacheResponse);
+  rpc GetDeviceBattery(GetDeviceBatteryRequest) returns (GetDeviceBatteryResponse); // 获取设备电量
+
+  rpc UploadImage(UploadImageRequest) returns (UploadImageResponse);
   rpc SendPacket(SendPacketRequest) returns (SendPacketResponse);
 }
 
@@ -31,6 +35,36 @@ message GetLogRequest {
 message GetLogResponse {
   bool is_success = 1;
   string log = 2;
+}
+
+message ClearCacheRequest {
+}
+
+message ClearCacheResponse {
+}
+
+message GetDeviceBatteryRequest {
+}
+
+message GetDeviceBatteryResponse {
+  uint32 battery = 1; // 设备电量
+  uint32 scale = 2;
+  uint32 status = 3;
+}
+
+message UploadImageRequest {
+  oneof data {
+    bytes file = 1;       // 文件内容
+    string file_name = 2; // 文件文件名
+    string file_path = 3; // 文件绝对路径
+    string file_url = 4;  // 文件下载地址
+  }
+  uint64 group_id = 5;
+}
+
+message UploadImageResponse {
+  bool is_success = 1;
+  string image_url = 2;
 }
 
 message SendPacketRequest {

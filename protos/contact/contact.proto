@@ -10,22 +10,22 @@ option go_package = "grpc/kritor/contact";
 import "contact/contact_data.proto";
 
 service ContactService {
-  rpc GetProfileCard(ProfileCardRequest) returns (ProfileCard) {} // 获取名片（限好友）
-  rpc GetStrangerInfo(StrangerInfoRequest) returns (StrangerInfo) {} // 获取陌生人信息
+  rpc GetProfileCard(ProfileCardRequest) returns (ProfileCard); // 获取名片（限好友）
+  rpc GetStrangerInfo(StrangerInfoRequest) returns (StrangerInfo); // 获取陌生人信息
 
-  rpc GetUid(GetUidRequest) returns (GetUidResponse) {} // 获取uid
-  rpc GetUinByUid(GetUinByUidRequest) returns (GetUinByUidResponse) {} // 获取uin
+  rpc GetUid(GetUidRequest) returns (GetUidResponse); // 获取uid
+  rpc GetUinByUid(GetUinByUidRequest) returns (GetUinByUidResponse); // 获取uin
 
-  rpc SetProfileCard(SetProfileCardRequest) returns (SetProfileCardResponse) {} // 设置自己的名片
+  rpc SetProfileCard(SetProfileCardRequest) returns (SetProfileCardResponse); // 设置自己的名片
 
-  rpc IsBlackListUser(IsBlackListUserRequest) returns (IsBlackListUserResponse) {} // 是否是黑名单用户
-  rpc VoteUser(VoteUserRequest) returns (VoteUserResponse) {} // 点赞好友
+  rpc IsBlackListUser(IsBlackListUserRequest) returns (IsBlackListUserResponse); // 是否是黑名单用户
+  rpc VoteUser(VoteUserRequest) returns (VoteUserResponse); // 点赞好友
 }
 
 message ProfileCardRequest {
   oneof account {
-    uint64 account_uin = 1; // 可选，uid和uin必须提供一个，两个都提供优先uin
-    string account_uid = 2; // 可选，uid和uin必须提供一个，两个都提供优先uin
+    uint64 uin = 1;
+    string uid = 2;
   }
 }
 
@@ -34,19 +34,19 @@ message StrangerInfoRequest {
 }
 
 message GetUidRequest {
-  repeated uint64 uin = 1;
+  repeated uint64 uins = 1;
 }
 
 message GetUidResponse {
-  map<uint64, string> uid = 1;
+  map<uint64, string> uid_map = 1;
 }
 
 message GetUinByUidRequest {
-  repeated string uid = 1;
+  repeated string uids = 1;
 }
 
 message GetUinByUidResponse {
-  map<string, uint64> uin = 1;
+  map<string, uint64> uin_map = 1;
 }
 
 message SetProfileCardRequest {
@@ -63,7 +63,8 @@ message SetProfileCardResponse {
 }
 
 message IsBlackListUserRequest {
-  uint64 uin = 1;
+  string uid = 1;
+  uint64 uin = 2;
 }
 
 message IsBlackListUserResponse {
@@ -72,10 +73,11 @@ message IsBlackListUserResponse {
 
 message VoteUserRequest {
   oneof account {
-    uint64 account_uin = 1; // 可选，uid和uin必须提供一个，两个都提供优先uin
-    string account_uid = 2; // 可选，uid和uin必须提供一个，两个都提供优先uin
+    string uid = 1;
+    uint64 uin = 2;
   }
-  optional uint32 vote_count = 3; // 可选，点赞数量，默认1
+  uint32 vote_count = 3;
 }
 
-message VoteUserResponse {}
+message VoteUserResponse {
+}
