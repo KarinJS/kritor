@@ -10,6 +10,7 @@ option go_package = "grpc/kritor/developer";
 service QsignService {
   rpc Sign(SignRequest) returns (SignResponse);
   rpc Energy(EnergyRequest) returns (EnergyResponse);
+  rpc GetCmdWhitelist(GetCmdWhitelistRequest) returns (GetCmdWhitelistResponse);
 }
 
 message SignRequest {
@@ -21,9 +22,9 @@ message SignRequest {
 }
 
 message SignResponse {
-  bytes sign = 1;
-  bytes token = 2;
-  bytes extra = 3;
+  bytes sec_sig = 1;
+  bytes sec_device_token = 2;
+  bytes sec_extra = 3;
 }
 
 message EnergyRequest {
@@ -33,4 +34,11 @@ message EnergyRequest {
 
 message EnergyResponse {
   bytes result = 1;
+}
+
+message GetCmdWhitelist {
+}
+
+message GetCmdWhitelistResponse {
+  repeated string result = 1;
 }

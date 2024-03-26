@@ -269,5 +269,5 @@ message ButtonRow {
 
 message ButtonElement {
   repeated ButtonRow rows = 1;
-  uint64 application_id = 2;
+  uint64 bot_appid = 2;
 }
