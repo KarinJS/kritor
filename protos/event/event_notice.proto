@@ -47,7 +47,7 @@ message NoticeEvent {
     GroupMemberDecreasedNotice group_member_decrease = 26;
     GroupAdminChangedNotice group_admin_change = 27;
     GroupMemberBanNotice group_member_ban = 28;
-    GroupSignInNotice group_sign = 29;
+    GroupSignInNotice group_sign_in = 29;
     GroupWholeBanNotice group_whole_ban = 30;
     GroupFileUploadedNotice group_file_uploaded = 31;
   }

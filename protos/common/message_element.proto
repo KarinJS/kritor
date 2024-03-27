@@ -106,6 +106,7 @@ message ImageElement {
     string file_path = 3; // 文件绝对路径
     string file_url = 4;  // 文件下载地址
   }
+  optional string file_md5 = 5;
   optional uint32 sub_type = 6;
   optional ImageType type = 10;
 }
@@ -117,7 +118,8 @@ message VoiceElement {
     string file_path = 3; // 文件绝对路径
     string file_url = 4;  // 文件下载地址
   }
-  optional bool magic = 5; // 是否魔法语音
+  optional string file_md5 = 5;
+  optional bool magic = 6; // 是否魔法语音
 }
 
 message VideoElement {
@@ -127,6 +129,7 @@ message VideoElement {
     string file_path = 3; // 文件绝对路径
     string file_url = 4;  // 文件下载地址
   }
+  optional string file_md5 = 5;
 }
 
 message BasketballElement {
