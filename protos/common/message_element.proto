@@ -35,7 +35,7 @@ message Element {
     XML = 21;
     FILE = 22;
     MARKDOWN = 23;
-    BUTTON = 24;
+    KEYBOARD = 24;
   }
   
   // be friendly to some languages that don't support oneof
@@ -249,9 +249,9 @@ message Button {
   ButtonAction action = 3;
 }
 
-message ButtonRow { repeated Button buttons = 1; }
+message KeyboardRow { repeated Button buttons = 1; }
 
-message ButtonElement {
-  repeated ButtonRow rows = 1;
+message KeyboardElement {
+  repeated KeyboardRow rows = 1;
   uint64 bot_appid = 2;
 }
