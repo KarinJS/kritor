@@ -12,8 +12,8 @@ service AuthenticationService {
   rpc GetAuthenticationState(GetAuthenticationStateRequest) returns (GetAuthenticationStateResponse);
   
   rpc GetTicket(GetTicketRequest) returns (GetTicketResponse);
-  rpc DeleteTicket(DeleteTicketRequest) returns (DeleteTicketResponse);
   rpc AddTicket(AddTicketRequest) returns (AddTicketResponse);
+  rpc DeleteTicket(DeleteTicketRequest) returns (DeleteTicketResponse);
 }
 
 /*
@@ -54,7 +54,7 @@ enum TicketOperationResponseCode {
 
 message GetTicketRequest {
   string account = 1; // 客户端连接认证账号
-  string ticket = 2;  // 客户端连接认证super ticket
+  string super_ticket = 2;  // 客户端连接认证super ticket
 }
 
 message GetTicketResponse {
@@ -65,8 +65,8 @@ message GetTicketResponse {
 
 message AddTicketRequest {
   string account = 1; // 客户端连接认证账号
-  string ticket = 2;  // 客户端连接认证super ticket
-  string new_ticket = 3;
+  string super_ticket = 2;  // 客户端连接认证super ticket
+  string ticket = 3;
 }
 
 message AddTicketResponse {
@@ -76,8 +76,8 @@ message AddTicketResponse {
 
 message DeleteTicketRequest {
   string account = 1; // 客户端连接认证账号
-  string ticket = 2;  // 客户端连接认证super ticket
-  string delete_ticket = 3;
+  string super_ticket = 2;  // 客户端连接认证super ticket
+  string ticket = 3;
 }
 
 message DeleteTicketResponse {

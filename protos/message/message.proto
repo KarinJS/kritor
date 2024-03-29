@@ -26,9 +26,9 @@ service MessageService {
   rpc UploadForwardMessage(UploadForwardMessageRequest) returns (UploadForwardMessageResponse); // 上传合并转发消息
   rpc DownloadForwardMessage(DownloadForwardMessageRequest) returns (DownloadForwardMessageResponse); // 下载合并转发消息
 
-  rpc DeleteEssenceMessage(DeleteEssenceMessageRequest) returns (DeleteEssenceMessageResponse); // 删除精华消息
   rpc GetEssenceMessageList(GetEssenceMessageListRequest) returns (GetEssenceMessageListResponse); // 获取精华消息
   rpc SetEssenceMessage(SetEssenceMessageRequest) returns (SetEssenceMessageResponse); // 设置精华消息
+  rpc DeleteEssenceMessage(DeleteEssenceMessageRequest) returns (DeleteEssenceMessageResponse); // 删除精华消息
 }
 
 message SendMessageRequest {
@@ -72,7 +72,7 @@ message ReactMessageWithEmojiRequest {
   kritor.common.Contact contact = 1;
   string message_id = 2; // 要设置的消息ID
   uint32 face_id = 3; // 表情ID
-  bool is_comment = 4; // 是否是评论,如果是false，则为撤销
+  bool is_set = 4; // 是否是评论,如果是false，则为撤销
 }
 
 message ReactMessageWithEmojiResponse {
@@ -134,14 +134,6 @@ message DownloadForwardMessageResponse {
   repeated kritor.common.PushMessageBody messages = 1; // 获取到的消息
 }
 
-message DeleteEssenceMessageRequest {
-  uint64 group_id = 1;
-  string message_id = 2; // 要删除的消息ID
-}
-
-message DeleteEssenceMessageResponse {
-}
-
 message GetEssenceMessageListRequest {
   uint64 group_id = 1;
   uint32 page = 2;
@@ -158,4 +150,12 @@ message SetEssenceMessageRequest {
 }
 
 message SetEssenceMessageResponse {
+}
+
+message DeleteEssenceMessageRequest {
+  uint64 group_id = 1;
+  string message_id = 2; // 要删除的消息ID
+}
+
+message DeleteEssenceMessageResponse {
 }
