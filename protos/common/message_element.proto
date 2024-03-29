@@ -65,7 +65,7 @@ message Element {
     XmlElement xml = 23;
     FileElement file = 24;
     MarkdownElement markdown = 25;
-    ButtonElement button = 26;
+    KeyboardElement keyboard = 26;
   }
 }
 
