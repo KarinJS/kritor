@@ -99,16 +99,16 @@ Kritor提供了多种接口供客户端调用，包括但不限于以下服务�
 >
 > - ### [核心服务](/docs/request/core.md)
 >
-> - ### [群聊服务](/docs/request/group.md)
+> - ### [扩展服务](/docs/request/development.md)
 > 
 > - ### [好友服务](/docs/request/friend.md)
-> 
-> - ### [消息服务](/docs/request/message.md)
+>
+> - ### [群聊服务](/docs/request/group.md)
 > 
 > - ### [文件服务](/docs/request/group_file.md)
 >
-> - ### [Web服务](/docs/request/web.md)
->
-> - ### [联系人服务](/docs/request/contact.md)
->
 > - ### [频道服务](/docs/request/guild.md)
+> 
+> - ### [消息服务](/docs/request/message.md)
+>
+> - ### [Web服务](/docs/request/web.md)

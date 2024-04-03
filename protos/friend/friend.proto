@@ -19,7 +19,7 @@ service FriendService {
   rpc IsBlackListUser(IsBlackListUserRequest) returns (IsBlackListUserResponse); // 是否是黑名单用户
   rpc VoteUser(VoteUserRequest) returns (VoteUserResponse); // 点赞好友
 
-  rpc GetUidByUin(GetUidRequest) returns (GetUidResponse); // 获取uid
+  rpc GetUidByUin(GetUidByUinRequest) returns (GetUidByUinResponse); // 获取uid
   rpc GetUinByUid(GetUinByUidRequest) returns (GetUinByUidResponse); // 获取uin
 }
 
@@ -62,22 +62,6 @@ message SetProfileCardRequest {
 message SetProfileCardResponse {
 }
 
-message GetUidRequest {
-  repeated uint64 target_uins = 1;
-}
-
-message GetUidResponse {
-  map<uint64, string> uid_map = 1;
-}
-
-message GetUinByUidRequest {
-  repeated string target_uids = 1;
-}
-
-message GetUinByUidResponse {
-  map<string, uint64> uin_map = 1;
-}
-
 message IsBlackListUserRequest {
   oneof target {
     string target_uid = 1;
@@ -98,4 +82,20 @@ message VoteUserRequest {
 }
 
 message VoteUserResponse {
+}
+
+message GetUidByUinRequest {
+  repeated uint64 target_uins = 1;
+}
+
+message GetUidByUinResponse {
+  map<uint64, string> uid_map = 1;
+}
+
+message GetUinByUidRequest {
+  repeated string target_uids = 1;
+}
+
+message GetUinByUidResponse {
+  map<string, uint64> uin_map = 1;
 }

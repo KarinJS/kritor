@@ -160,48 +160,25 @@ message GetFileSystemInfoResponse {
 }
 ```
 
-## 获取根目录文件/文件夹列表
+## 获取文件列表
 
-获取根目录文件/文件夹列表。
+获取文件列表。
 
 ### 参数
 
-- **方法名**: `GetRootFilesList`
-- **请求类型**: `GetRootFilesListRequest`
-- **响应类型**: `GetRootFilesListResponse`
+- **方法名**: `GetFileList`
+- **请求类型**: `GetFileListRequest`
+- **响应类型**: `GetFileListResponse`
 
 ### 请求与响应
 
 ```protobuf
-message GetRootFilesRequest {
+message GetFileListRequest {
   uint64 group_id = 1; // 群号
+  optional string folder_id = 2; // 文件夹id 空则为根目录
 }
 
-message GetRootFilesResponse {
-  repeated File files = 1; // 文件列表
-  repeated Folder folders = 2;
-}
-```
-
-## 获取子目录文件/文件夹列表
-
-获取子目录文件/文件夹列表。
-
-### 参数
-
-- **方法名**: `GetFiles`
-- **请求类型**: `GetFilesRequest`
-- **响应类型**: `GetFilesResponse`
-
-### 请求与响应
-
-```protobuf
-message GetFilesRequest {
-  uint64 group_id = 1; // 群号
-  string folder_id = 2; // 文件夹id
-}
-
-message GetFilesResponse {
+message GetFileListResponse {
   repeated File files = 1;
   repeated Folder folders = 2;
 }

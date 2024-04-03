@@ -11,38 +11,6 @@
 
 ## 基础定义
 
-### 联系人
-
-```protobuf
-package kritor.message; // 记住是这个路径的！！！！！
-
-enum Scene {
-  GROUP = 0; // 群聊
-  FRIEND = 1; // 私聊
-  GUILD = 2; // 频道
-  STRANGER_FROM_GROUP = 10; // 群临时会话
-
-  // 以下类型为可选实现
-  NEARBY = 5; // 附近的人
-  STRANGER = 9; // 陌生人
-}
-
-message Contact {
-  Scene scene = 1;
-  string peer = 2; // 群聊则为群号 私聊则为QQ号
-  optional string sub_peer = 3; // 群临时聊天则为群号 频道消息则为子频道号 其它情况可不提供
-}
-```
-
-其中的`scene`表示来自何方的类型，而`peer`则为来自何方，他有以下几种情况：
-
-- **GROUP**：`peer`为群号。
-- **FRIEND**：`peer`为QQ号或者用户`uid`。
-- **GUILD**：`peer`为频道号，`sub_peer`为子频道号。
-- **NEARBY**：`peer`为QQ号或者用户`tiny_id`。
-- **STRANGER**：`peer`为QQ号或者用户`uid`。
-- **STRANGER_FROM_GROUP**：`peer`为QQ，`sub_peer`为群号。
-
 ### 消息元素
 
 ```protobuf
@@ -99,13 +67,13 @@ message Element {
 
 ```protobuf
 message SendMessageRequest {
-  Contact contact = 1; // 发送目标
-  repeated Element elements = 2; // 发的什么东西
+  kritor.common.Contact contact = 1; // 发送目标
+  repeated kritor.common.Element elements = 2; // 发的什么东西
   optional uint32 retry_count = 3; // 重试次数
 }
 
 message SendMessageResponse {
-  uint64 message_id = 1; // 发送成功后的消息ID
+  string message_id = 1; // 发送成功后的消息ID
   uint32 message_time = 2; // 发送时间
 }
 ```
@@ -124,35 +92,36 @@ message SendMessageResponse {
 
 ```protobuf
 message SendMessageByResIdRequest {
-  string res_id = 1; // 资源ID
-  Contact contact = 2; // 发送目标
+  kritor.common.Contact contact = 1; // 发送目标
+  string res_id = 2; // 资源ID
   optional uint32 retry_count = 3; // 重试次数
 }
 
 message SendMessageByResIdResponse {
-  uint64 message_id = 1; // 发送成功后的消息ID
+  string message_id = 1; // 发送成功后的消息ID
   uint32 message_time = 2; // 发送时间
 }
 ```
 
-## 清空会话消息
+## 置消息已读
 
-清空指定会话的消息。
+将指定会话的消息设置为已读状态。
 
 ### 参数
 
-- **方法名**: `ClearMessages`
-- **请求类型**: `ClearMessagesRequest`
-- **响应类型**: `ClearMessagesResponse`
+- **方法名**: `SetMessageRead`
+- **请求类型**: `SetMessageReadRequest`
+- **响应类型**: `SetMessageReadResponse`
 
 ### 请求与响应
 
 ```protobuf
-message ClearMessagesRequest {
-  Contact contact = 1; // 要清空的目标
+message SetMessageReadRequest {
+  kritor.common.Contact contact = 1; // 要清空的目标
 }
 
-message ClearMessagesResponse {}
+message SetMessageReadResponse {
+}
 ```
 
 ## 撤回消息
@@ -177,49 +146,27 @@ message RecallMessageResponse {
 }
 ```
 
-## 像telegram一样消息下评论表情（灰度）
+## 在消息下回应表情
 
-在每条消息的底下评论一个表情。
+在消息的底下回应一个表情。
 
 ### 参数
 
 - **方法名**: `SetMessageCommentEmoji`
-- **请求类型**: `SetMessageCommentEmojiRequest`
-- **响应类型**: `SetMessageCommentEmojiResponse`
+- **请求类型**: `ReactMessageWithEmojiRequest`
+- **响应类型**: `ReactMessageWithEmojiResponse`
 
 ### 请求与响应
 
 ```protobuf
-message SetMessageCommentEmojiRequest {
-  Contact contact = 1;
-  uint64 message_id = 2; // 要设置的消息ID
+message ReactMessageWithEmojiRequest {
+  kritor.common.Contact contact = 1;
+  string message_id = 2; // 要设置的消息ID
   uint32 face_id = 3; // 表情ID
-  optional bool is_comment = 4; // 是否是评论,如果是false，则为撤销
+  bool is_comment = 4; // 是否是评论,如果是false，则为撤销
 }
 
-message SetMessageCommentEmojiResponse {
-}
-```
-
-## 获取合并转发消息
-
-获取合并转发消息。
-
-### 参数
-
-- **方法名**: `GetForwardMessages`
-- **请求类型**: `GetForwardMessagesRequest`
-- **响应类型**: `GetForwardMessagesResponse`
-
-### 请求与响应
-
-```protobuf
-message GetForwardMessagesRequest {
-  string res_id = 1; // 资源ID
-}
-
-message GetForwardMessagesResponse {
-  repeated MessageBody messages = 1; // 获取到的消息
+message ReactMessageWithEmojiResponse {
 }
 ```
 
@@ -237,12 +184,12 @@ message GetForwardMessagesResponse {
 
 ```protobuf
 message GetMessageRequest {
-  Contact contact = 1; // 要获取的目标
-  uint64 message_id = 2; // 要获取的消息ID
+  kritor.common.Contact contact = 1; // 要获取的目标
+  string message_id = 2; // 要获取的消息ID
 }
 
 message GetMessageResponse {
-  MessageBody message = 1; // 获取到的消息
+  kritor.common.PushMessageBody message = 1; // 获取到的消息
 }
 ```
 
@@ -260,12 +207,12 @@ message GetMessageResponse {
 
 ```protobuf
 message GetMessageBySeqRequest {
-  Contact contact = 1; // 要获取的目标
+  kritor.common.Contact contact = 1; // 要获取的目标
   uint64 message_seq = 2; // 要获取的消息序号
 }
 
 message GetMessageBySeqResponse {
-  MessageBody message = 1; // 获取到的消息
+  kritor.common.PushMessageBody message = 1; // 获取到的消息
 }
 ```
 
@@ -283,13 +230,105 @@ message GetMessageBySeqResponse {
 
 ```protobuf
 message GetHistoryMessageRequest {
-  Contact contact = 1; // 要获取的目标
-  optional uint64 start_message_id = 2; // 起始消息ID 默认最新一条开始
+  kritor.common.Contact contact = 1; // 要获取的目标
+  optional string start_message_id = 2; // 起始消息ID 默认最新一条开始
   optional uint32 count = 3; // 获取数量 默认10
 }
 
 message GetHistoryMessageResponse {
-  repeated MessageBody messages = 1; // 获取到的消息
+  repeated kritor.common.PushMessageBody messages = 1; // 获取到的消息
+}
+```
+
+## 上传合并转发消息
+
+上传合并转发消息。
+
+### 参数
+
+- **方法名**: `UploadForwardMessage`
+- **请求类型**: `UploadForwardMessageRequest`
+- **响应类型**: `UploadForwardMessageResponse`
+
+### 请求与响应
+
+```protobuf
+message UploadForwardMessageRequest {
+  kritor.common.Contact contact = 1;
+  repeated kritor.common.ForwardMessageBody messages = 2;
+  optional uint32 retry_count = 3;
+}
+
+message UploadForwardMessageResponse {
+  string res_id = 1;
+}
+```
+
+## 获取合并转发消息
+
+获取合并转发消息。
+
+### 参数
+
+- **方法名**: `DownloadForwardMessage`
+- **请求类型**: `DownloadForwardMessageRequest`
+- **响应类型**: `DownloadForwardMessageResponse`
+
+### 请求与响应
+
+```protobuf
+message DownloadForwardMessageResponse {
+  repeated kritor.common.PushMessageBody messages = 1; // 获取到的消息
+}
+
+message DeleteEssenceMessageRequest {
+  uint64 group_id = 1;
+  string message_id = 2; // 要删除的消息ID
+}
+```
+## 获取群精华消息列表
+
+获取群精华消息列表。
+
+### 参数
+
+- **方法名**: `GetEssenceMessages`
+- **请求类型**: `GetEssenceMessagesRequest`
+- **响应类型**: `GetEssenceMessagesResponse`
+
+### 请求与响应
+
+```protobuf
+message GetEssenceMessageListRequest {
+  uint64 group_id = 1;
+  uint32 page = 2;
+  uint32 page_size = 3;
+}
+
+message GetEssenceMessageListResponse {
+  repeated kritor.common.EssenceMessageBody messages = 1;
+}
+```
+
+## 设置群精华消息
+
+设置群精华消息。
+
+### 参数
+
+- **方法名**: `SetEssenceMessage`
+- **请求类型**: `SetEssenceMessageRequest`
+- **响应类型**: `SetEssenceMessageResponse`
+
+### 请求与响应
+
+```protobuf
+message SetEssenceMessageRequest {
+  uint64 group_id = 1;
+  string message_id = 2; // 要设置为精华消息的消息ID
+}
+
+message SetEssenceMessageResponse {
 }
 ```
 
@@ -312,61 +351,5 @@ message DeleteEssenceMsgRequest {
 }
 
 message DeleteEssenceMsgResponse {
-}
-```
-
-## 获取群精华消息列表
-
-获取群精华消息列表。
-
-### 参数
-
-- **方法名**: `GetEssenceMessages`
-- **请求类型**: `GetEssenceMessagesRequest`
-- **响应类型**: `GetEssenceMessagesResponse`
-
-### 请求与响应
-
-```protobuf
-message EssenceMessage {
-  uint64 sender_uin = 1;
-  string sender_nick = 2;
-  uint32 msg_time = 3;
-  uint64 operator_uin = 4;
-  string operator_nick = 5;
-  uint32 operation_time = 6;
-  uint64 message_id = 7;
-  uint64 message_seq = 8;
-  repeated Element elements = 9;
-}
-
-message GetEssenceMessagesRequest {
-  uint64 group_id = 1;
-}
-
-message GetEssenceMessagesResponse {
-  repeated EssenceMessage essence_message = 1;
-}
-```
-
-## 设置群精华消息
-
-设置群精华消息。
-
-### 参数
-
-- **方法名**: `SetEssenceMessage`
-- **请求类型**: `SetEssenceMessageRequest`
-- **响应类型**: `SetEssenceMessageResponse`
-
-### 请求与响应
-
-```protobuf
-message SetEssenceMessageRequest {
-  uint64 group_id = 1;
-  uint64 message_id = 2; // 要设置为精华消息的消息ID
-}
-
-message SetEssenceMessageResponse {
 }
 ```

@@ -4,10 +4,10 @@ Kritor提供的基础鉴权操作，可避免grpc泄露导致的被骇入操作�
 
 ## 基础信息
 
-- **服务名**: `Authentication`
-- **Java包名**: `io.kritor`
-- **C#命名空间**: `Kritor`
-- **[source proto file](/protos/src/main/proto/kritor/authenticate.proto)**
+- **服务名**: `AuthenticationService`
+- **Java包名**: `io.kritor.authentication`
+- **C#命名空间**: `Kritor.Authentication`
+- **[source proto file](/protos/src/main/proto/kritor/auth/authenticate.proto)**
 
 ## 鉴权
 
@@ -15,28 +15,28 @@ Kritor提供的基础鉴权操作，可避免grpc泄露导致的被骇入操作�
 
 ### 参数
 
-- **方法名**: `Auth`
-- **请求类型**: `AuthReq`
-- **响应类型**: `AuthRsp`
+- **方法名**: `Authenticate`
+- **请求类型**: `AuthenticateRequest`
+- **响应类型**: `AuthenticateResponse`
 
 ### 请求与响应
 
 ```protobuf
-enum AuthCode {
-  OK = 0;
-  NO_ACCOUNT = 1;
-  NO_TICKET = 2;
-  LOGIC_ERROR = 3;
+message AuthenticateRequest {
+  string account = 1; // 客户端连接认证账号
+  string ticket = 2;  // 客户端连接认证ticket
 }
 
-message AuthReq {
-  string ticket = 1; // 客户端连接认证ticket
-  string account = 2; // 客户端连接认证账号
-}
+message AuthenticateResponse {
+  enum AuthenticateResponseCode {
+    OK = 0;
+    NO_ACCOUNT = 1;
+    NO_TICKET = 2;
+    LOGIC_ERROR = 3;
+  }
 
-message AuthRsp {
-  AuthCode code = 1; // 认证结果
-  string msg = 2; // 错误信息
+  AuthenticateResponseCode code = 1; // 认证结果
+  string msg = 2;    // 错误信息
 }
 ```
 
@@ -46,19 +46,19 @@ message AuthRsp {
 
 ### 参数
 
-- **方法名**: `GetAuthState`
-- **请求类型**: `GetAuthStateReq`
-- **响应类型**: `GetAuthStateRsp`
+- **方法名**: `GetAuthenticationState`
+- **请求类型**: `GetAuthenticationStateRequest`
+- **响应类型**: `GetAuthenticationStateResponse`
 
 ### 请求与响应
 
 ```protobuf
-message GetAuthStateReq {
+message GetAuthenticationStateRequest {
   string account = 1; // 客户端连接认证账号
 }
 
-message GetAuthStateRsp {
-  bool is_required_auth = 1; // 是否需要认证
+message GetAuthenticationStateResponse {
+  bool is_required = 1; // 是否需要认证
 }
 ```
 
@@ -69,21 +69,26 @@ WebUI通过superTicket获取鉴权ticket，用于实现远程控制kritor。
 ### 参数
 
 - **方法名**: `GetTicket`
-- **请求类型**: `GetTicketReq`
-- **响应类型**: `GetTicketRsp`
+- **请求类型**: `GetTicketRequest`
+- **响应类型**: `GetTicketResponse`
 
 ### 请求与响应
 
 ```protobuf
-message TicketReq {
-  string account = 1; // 客户端连接认证账号
-  string ticket = 2; // 客户端连接认证super ticket
+enum TicketOperationResponseCode {
+  OK = 0;
+  ERROR = 1;
 }
 
-message TicketRsp {
-  int32 code = 1;
+message GetTicketRequest {
+  string account = 1; // 客户端连接认证账号
+  string ticket = 2;  // 客户端连接认证super ticket
+}
+
+message GetTicketResponse {
+  TicketOperationResponseCode code = 1;
   string msg = 2;
-  repeated string ticket = 3; // 返回的客户端ticket，非super ticket
+  repeated string tickets = 3; // 返回的客户端ticket，非super ticket
 }
 ```
 
@@ -94,20 +99,20 @@ WebUI通过superTicket删除鉴权ticket，用于实现远程控制kritor。
 ### 参数
 
 - **方法名**: `DeleteTicket`
-- **请求类型**: `DeleteTicketReq`
-- **响应类型**: `DeleteTicketRsp`
+- **请求类型**: `DeleteTicketRequest`
+- **响应类型**: `DeleteTicketResponse`
 
 ### 请求与响应
 
 ```protobuf
-message DeleteTicketReq {
+message DeleteTicketRequest {
   string account = 1; // 客户端连接认证账号
-  string ticket = 2; // 客户端连接认证super ticket
-  string deleted_ticket = 3;
+  string ticket = 2;  // 客户端连接认证super ticket
+  string delete_ticket = 3;
 }
 
-message DeleteTicketRsp {
-  int32 code = 1;
+message DeleteTicketResponse {
+  TicketOperationResponseCode code = 1;
   string msg = 2;
 }
 ```
@@ -119,20 +124,20 @@ WebUI通过superTicket添加鉴权ticket，用于实现远程控制kritor。
 ### 参数
 
 - **方法名**: `AddTicket`
-- **请求类型**: `AddTicketReq`
-- **响应类型**: `AddTicketRsp`
+- **请求类型**: `AddTicketRequest`
+- **响应类型**: `AddTicketResponse`
 
 ### 请求与响应
 
 ```protobuf
-message AddTicketReq {
+message AddTicketRequest {
   string account = 1; // 客户端连接认证账号
-  string ticket = 2; // 客户端连接认证super ticket
+  string ticket = 2;  // 客户端连接认证super ticket
   string new_ticket = 3;
 }
 
-message AddTicketRsp {
-  int32 code = 1;
+message AddTicketResponse {
+  TicketOperationResponseCode code = 1;
   string msg = 2;
 }
 ```

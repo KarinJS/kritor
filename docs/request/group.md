@@ -11,8 +11,6 @@
 
 ## 基础定义
 
-### 群信息
-
 ```protobuf
 message GroupInfo {
   uint64 group_id = 1;
@@ -24,22 +22,43 @@ message GroupInfo {
   uint32 member_count = 7;
   uint64 group_uin = 10;
 }
-```
 
-### 群成员角色
+message NotJoinedGroupInfo {
+  uint64 group_id = 1;
+  uint32 max_member_count = 2;
+  uint32 member_count = 3;
+  string group_name = 4;
+  string group_desc = 5;
+  uint64 owner = 6;
+  uint32 create_time = 7;
 
-```protobuf
+  uint32 group_flag = 8; // 群聊类型什么的都在这里，如果获取不到可以不实现
+  uint32 group_flag_ext = 9; // 扩展群聊类型
+}
+
+message ProhibitedUserInfo {
+  string uid = 1;
+  uint64 uin = 2;
+  uint32 prohibited_time = 3;
+}
+
+message GroupHonorInfo {
+  string uid = 1; // 荣誉成员uid
+  uint64 uin = 2; // 荣誉成员uin
+  string nick = 3; // 荣誉成员昵称
+  string honor_name = 4; // 荣誉名称
+  string avatar = 5; // 荣誉图标url
+  uint32 id = 6; // 荣誉id
+  string description = 7; // 荣誉描述
+}
+
 enum MemberRole {
   ADMIN = 0;
   MEMBER = 1;
   OWNER = 2;
   STRANGER = 3;
 }
-```
 
-### 群成员信息
-
-```protobuf
 message GroupMemberInfo {
   string uid = 1;
   uint64 uin = 2;
@@ -54,7 +73,7 @@ message GroupMemberInfo {
   uint64 shut_up_timestamp = 11;
 
   optional uint32 distance = 100;
-  repeated uint32 honor = 101;
+  repeated uint32 honors = 101;
   optional bool unfriendly = 102;
   optional bool card_changeable = 103;
 }
