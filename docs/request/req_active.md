@@ -2,6 +2,16 @@
 
 主动Grpc由Grpc框架提供与实现请求的接收等待以及重试，是Kritor最为推荐的请求方式。
 
+## 元数据 (Metadata)
+
+Kritor端的响应和事件推送均包含以下元数据：
+
+| 名称          | 解释           |
+|-------------|--------------|
+| kritor-self-uin        | kritor端uin   |
+| kritor-self-uid          | kritor端uid   |
+| kritor-self-version        | kritor端实现及其版本 |
+
 ## 请求与响应
 
 Grpc提供了`挂起/堵塞`和`异步`的两种请求方式。

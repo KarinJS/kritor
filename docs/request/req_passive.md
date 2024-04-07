@@ -15,6 +15,16 @@
 > 
 > Kritor端的发包流会被用于在Bot端接收来自Kritor端的返回包，也叫做Bot端的收包流。
 
+## 元数据 (Metadata)
+
+Kritor端的响应和事件推送均包含以下元数据：
+
+| 名称          | 解释           |
+|-------------|--------------|
+| kritor-self-uin        | kritor端uin   |
+| kritor-self-uid          | kritor端uid   |
+| kritor-self-version        | kritor端实现及其版本 |
+
 ## 请求包格式
 
 ### 请求命令名
