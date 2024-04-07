@@ -90,7 +90,11 @@ message BubbleFaceElement {
 }
 
 message ReplyElement {
-  string message_id = 1; // 回复的消息id
+  oneof id {
+    string message_id = 1; // 回复的消息id
+    string request_id = 3;
+    string notice_id = 3;
+  }
 }
 
 message ImageElement {

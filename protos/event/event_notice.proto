@@ -32,6 +32,7 @@ message NoticeEvent {
 
   NoticeType type = 1;
   uint32 time  = 2;
+  string notice_id = 3;
 
   oneof notice {
     FriendPokeNotice friend_poke = 10;

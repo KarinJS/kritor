@@ -31,7 +31,7 @@ message EventStructure {
   EventType type = 1;
   oneof event {
     kritor.common.PushMessageBody message = 2;
-    RequestsEvent request = 3;
+    RequestEvent request = 3;
     NoticeEvent notice = 4;
   }
 }
