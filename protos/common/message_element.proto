@@ -157,8 +157,8 @@ message CustomMusicData {
 message MusicElement {
   enum MusicPlatform {
     QQ = 0;
-    NetEase = 1;
-    Custom = 10;
+    NETEASE = 1;
+    CUSTOM = 10;
   }
 
   MusicPlatform platform = 1;
