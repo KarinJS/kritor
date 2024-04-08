@@ -35,6 +35,11 @@ message SendMessageRequest {
   kritor.common.Contact contact = 1; // 发送目标
   repeated kritor.common.Element elements = 2; // 发的什么东西
   optional uint32 retry_count = 3; // 重试次数
+
+  // passive_id
+  optional string message_id = 4;
+  optional string notice_id = 5;
+  optional string request_id = 6;
 }
 
 message SendMessageResponse {
@@ -43,14 +48,14 @@ message SendMessageResponse {
 }
 
 message SendMessageByResIdRequest {
-  kritor.common.Contact contact = 1; // 发送目标
-  string res_id = 2; // 资源ID
-  optional uint32 retry_count = 3; // 重试次数
+  kritor.common.Contact contact = 1;
+  string res_id = 2;
+  optional uint32 retry_count = 3;
 }
 
 message SendMessageByResIdResponse {
-  string message_id = 1; // 发送成功后的消息ID
-  uint32 message_time = 2; // 发送时间
+  string message_id = 1;
+  uint32 message_time = 2;
 }
 
 message SetMessageReadRequest {

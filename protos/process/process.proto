@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package kritor.process;
+
+option csharp_namespace = "Kritor.Process";
+option java_multiple_files = true;
+option java_package = "io.kritor.process";
+option go_package = "grpc/kritor/process";
+
+service ProcessService {
+  rpc SetFriendApplyResult(SetFriendApplyResultRequest) returns (SetFriendApplyResultResponse);
+  rpc SetGroupApplyResult(SetGroupApplyResultRequest) returns (SetGroupApplyResultResponse);
+  rpc SetInvitedJoinGroupResult(SetInvitedJoinGroupResultRequest) returns (SetInvitedJoinGroupResultResponse);
+}
+
+message SetFriendApplyResultRequest {
+  string request_id = 1;
+  bool is_approve = 2;
+  optional string remark = 3; // 同意时可选
+}
+
+message SetFriendApplyResultResponse {
+}
+
+message SetGroupApplyResultRequest {
+  string request_id = 1;
+  bool is_approve = 2;
+  optional string deny_reason = 3; // 拒绝时可选
+}
+
+message SetGroupApplyResultResponse {
+}
+
+message SetInvitedJoinGroupResultRequest {
+  string request_id = 1;
+  bool is_approve = 2;
+}
+
+message SetInvitedJoinGroupResultResponse {
+}
