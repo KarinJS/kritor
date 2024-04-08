@@ -21,8 +21,8 @@ message RequestEvent {
   string request_id = 3;
 
   oneof request {
-    FriendApplyRequest friend_apply = 3;
-    GroupApplyRequest group_apply = 4;
-    InvitedJoinGroupRequest invited_group = 5;
+    FriendApplyRequest friend_apply = 10;
+    GroupApplyRequest group_apply = 11;
+    InvitedJoinGroupRequest invited_group = 12;
   }
 }
