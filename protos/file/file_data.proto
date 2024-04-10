@@ -19,7 +19,7 @@ message File {
   uint64 file_size = 3;
   int32 bus_id = 4;
   uint32 upload_time = 5;
-  uint32 dead_time = 6;
+  uint32 expire_time = 6;
   uint32 modify_time = 7;
   uint32 download_times = 8;
   uint64 uploader = 9;

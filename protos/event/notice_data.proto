@@ -54,11 +54,10 @@ message GroupRecallNotice {
   uint64 group_id = 1;
   string operator_uid = 2;
   uint64 operator_uin = 3;
-  string message_id = 4;
-  string tip_text = 5;
-  string target_uid = 6;
-  uint64 target_uin = 7;
-  uint64 message_seq = 8;
+  string target_uid = 4;
+  uint64 target_uin = 5;
+  string message_id = 6;
+  string tip_text = 7;
 }
 
 message GroupFileUploadedNotice {
@@ -66,12 +65,11 @@ message GroupFileUploadedNotice {
   string operator_uid = 2;
   uint64 operator_uin = 3;
   string file_id = 4;
-  string file_sub_id = 5;
-  string file_name = 6;
-  uint64 file_size = 7;
+  string file_name = 5;
+  uint64 file_size = 6;
+  int32 bus_id = 7;
   uint32 expire_time = 8;
-  int32 biz = 9;
-  string url = 10;
+  string file_url = 9;
 }
 
 message GroupCardChangedNotice {
@@ -136,6 +134,14 @@ message GroupAdminChangedNotice {
   bool is_admin = 6;
 }
 
+message GroupSignInNotice {
+  uint64 group_id = 1;
+  string target_uid = 2;
+  uint64 target_uin = 3;
+  string action = 4;
+  string rank_image = 6;
+}
+
 message GroupMemberBanNotice {
   enum GroupMemberBanType {
     LIFT_BAN = 0;
@@ -149,15 +155,6 @@ message GroupMemberBanNotice {
   uint64 target_uin = 5;
   int32 duration = 6;
   GroupMemberBanType type = 7;
-}
-
-message GroupSignInNotice {
-  uint64 group_id = 1;
-  string target_uid = 2;
-  uint64 target_uin = 3;
-  string action = 4;
-  string suffix = 5;
-  string rank_image = 6;
 }
 
 message GroupWholeBanNotice {

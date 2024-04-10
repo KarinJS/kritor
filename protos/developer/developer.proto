@@ -24,7 +24,7 @@ service DeveloperService {
 }
 
 message ShellRequest {
-  string command = 1;
+  repeated string command = 1;
   string directory = 2;
 }
 
