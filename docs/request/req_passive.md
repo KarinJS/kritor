@@ -1,3 +1,7 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+
 # 被动式Grpc
 
 被动Grpc是为了弥补Grpc在Kritor作为client时候，Bot端（server）无法主动发起请求的一个实现，其原理是基于grpc的双向流来传输数据，实现比较繁琐，需要用户自行实现接包的等待以及处理。

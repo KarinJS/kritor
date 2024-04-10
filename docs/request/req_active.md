@@ -1,3 +1,7 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+
 # 主动Grpc
 
 主动Grpc由Grpc框架提供与实现请求的接收等待以及重试，是Kritor最为推荐的请求方式。

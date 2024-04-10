@@ -1,3 +1,7 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+
 # 事件推送
 
 Kritor的事件推送由于基于grpc，所以说主动RPC和被动RPC，有不同的消息监听写法。
