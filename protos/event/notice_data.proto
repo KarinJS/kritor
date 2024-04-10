@@ -7,7 +7,7 @@ option java_multiple_files = true;
 option java_package = "io.kritor.event";
 option go_package = "grpc/kritor/event";
 
-message FriendPokeNotice {
+message PrivatePokeNotice {
   string operator_uid = 1;
   uint64 operator_uin = 2;
   string action = 3;
@@ -15,27 +15,22 @@ message FriendPokeNotice {
   string action_image = 5;
 }
 
-message FriendRecallNotice {
+message PrivateRecallNotice {
   string operator_uid = 1;
   uint64 operator_uin = 2;
   string message_id = 3;
   string tip_text = 4;
 }
 
-message GroupUniqueTitleChangedNotice {
-  uint64 target = 1;
-  string title = 2;
-  uint64 group_id = 3;
-}
-
-message GroupEssenceMessageNotice {
-  uint64 group_id = 1;
-  string operator_uid = 2;
-  uint64 operator_uin = 3;
-  string target_uid = 4;
-  uint64 target_uin = 5;
-  string message_id = 6;
-  uint32 sub_type = 7;
+message PrivateFileUploadedNotice {
+  string operator_uid = 1;
+  uint64 operator_uin = 2;
+  string file_id = 3;
+  string file_sub_id = 4;
+  string file_name = 5;
+  uint64 file_size = 6;
+  uint32 expire_time = 7;
+  string url = 8;
 }
 
 message GroupPokeNotice {
@@ -49,6 +44,30 @@ message GroupPokeNotice {
   string action_image = 8;
 }
 
+message GroupRecallNotice {
+  uint64 group_id = 1;
+  string operator_uid = 2;
+  uint64 operator_uin = 3;
+  string message_id = 4;
+  string tip_text = 5;
+  string target_uid = 6;
+  uint64 target_uin = 7;
+  uint64 message_seq = 8;
+}
+
+message GroupFileUploadedNotice {
+  uint64 group_id = 1;
+  string operator_uid = 2;
+  uint64 operator_uin = 3;
+  string file_id = 4;
+  string file_sub_id = 5;
+  string file_name = 6;
+  uint64 file_size = 7;
+  uint32 expire_time = 8;
+  int32 biz = 9;
+  string url = 10;
+}
+
 message GroupCardChangedNotice {
   uint64 group_id = 1;
   string operator_uid = 2;
@@ -56,6 +75,23 @@ message GroupCardChangedNotice {
   string target_uid = 4;
   uint64 target_uin = 5;
   string new_card = 6;
+}
+
+message GroupUniqueTitleChangedNotice {
+  uint64 group_id = 1;
+  string target_uid = 2;
+  uint64 target_uin = 3;
+  string title = 4;
+}
+
+message GroupEssenceMessageNotice {
+  uint64 group_id = 1;
+  string operator_uid = 2;
+  uint64 operator_uin = 3;
+  string target_uid = 4;
+  uint64 target_uin = 5;
+  string message_id = 6;
+  bool is_set = 7;
 }
 
 message GroupMemberIncreasedNotice {
@@ -109,17 +145,6 @@ message GroupMemberBanNotice {
   GroupMemberBanType type = 7;
 }
 
-message GroupRecallNotice {
-  uint64 group_id = 1;
-  string message_id = 2;
-  string tip_text = 3;
-  string operator_uid = 4;
-  uint64 operator_uin = 5;
-  string target_uid = 6;
-  uint64 target_uin = 7;
-  uint64 message_seq = 8;
-}
-
 message GroupSignInNotice {
   uint64 group_id = 1;
   string target_uid = 2;
@@ -136,26 +161,9 @@ message GroupWholeBanNotice {
   bool is_ban = 4;
 }
 
-message FriendFileUploadedNotice {
-  string operator_uid = 1;
-  uint64 operator_uin = 2;
-  string file_id = 3;
-  string file_sub_id = 4;
-  string file_name = 5;
-  uint64 file_size = 6;
-  uint32 expire_time = 7;
-  string url = 8;
-}
-
-message GroupFileUploadedNotice {
+message GroupReactMessageWithEmojiNotice {
   uint64 group_id = 1;
-  string operator_uid = 2;
-  uint64 operator_uin = 3;
-  string file_id = 4;
-  string file_sub_id = 5;
-  string file_name = 6;
-  uint64 file_size = 7;
-  uint32 expire_time = 8;
-  int32 biz = 9;
-  string url = 10;
+  string message_id = 2;
+  uint32 face_id = 3;
+  bool is_set = 4;
 }

@@ -12,22 +12,24 @@ import "event/notice_data.proto";
 message NoticeEvent {
   enum NoticeType {
     UNKNOWN = 0;
-    FRIEND_POKE = 10; // 好友头像戳一戳
-    FRIEND_RECALL = 11; // 好友消息撤回
-    FRIEND_FILE_COME = 12; // 私聊文件上传
+
+    PRIVATE_POKE = 10; // 私聊头像戳一戳
+    PRIVATE_RECALL = 11; // 私聊消息撤回
+    PRIVATE_FILE_UPLOADED = 12; // 私聊文件上传
   
     GROUP_POKE = 20; // 群头像戳一戳
-    GROUP_CARD_CHANGED = 21; // 群名片改变
-    GROUP_MEMBER_UNIQUE_TITLE_CHANGED = 22; // 群成员专属头衔改变
-    GROUP_ESSENCE_CHANGED = 23; // 群精华消息改变
-    GROUP_RECALL = 24; // 群消息撤回
-    GROUP_MEMBER_INCREASE = 25; // 群成员增加
-    GROUP_MEMBER_DECREASE = 26; // 群成员减少
-    GROUP_ADMIN_CHANGED = 27; // 群管理员变动
-    GROUP_MEMBER_BANNED = 28; // 群成员被禁言
-    GROUP_SIGN = 29; // 群签到
-    GROUP_WHOLE_BAN = 30; // 群全员禁言
-    GROUP_FILE_COME = 31; // 群文件上传
+    GROUP_RECALL = 21; // 群消息撤回
+    GROUP_FILE_UPLOADED = 22; // 群文件上传
+    GROUP_CARD_CHANGED = 23; // 群名片改变
+    GROUP_MEMBER_UNIQUE_TITLE_CHANGED = 24; // 群成员专属头衔改变
+    GROUP_ESSENCE_CHANGED = 25; // 群精华消息改变
+    GROUP_MEMBER_INCREASE = 26; // 群成员增加
+    GROUP_MEMBER_DECREASE = 27; // 群成员减少
+    GROUP_ADMIN_CHANGED = 28; // 群管理员变动
+    GROUP_SIGN_IN = 29; // 群签到
+    GROUP_MEMBER_BAN = 30; // 群成员被禁言
+    GROUP_WHOLE_BAN = 31; // 群全员禁言
+    GROUP_REACT_MESSAGE_WITH_EMOJI = 32; // 群消息被表情回应
   }
 
   NoticeType type = 1;
@@ -35,21 +37,22 @@ message NoticeEvent {
   string notice_id = 3;
 
   oneof notice {
-    FriendPokeNotice friend_poke = 10;
-    FriendRecallNotice friend_recall = 11;
-    FriendFileUploadedNotice friend_file_uploaded = 12;
+    PrivatePokeNotice private_poke = 10;
+    PrivateRecallNotice private_recall = 11;
+    PrivateFileUploadedNotice private_file_uploaded = 12;
 
     GroupPokeNotice group_poke = 20;
-    GroupCardChangedNotice group_card_changed = 21;
-    GroupUniqueTitleChangedNotice group_member_unique_title_changed = 22;
-    GroupEssenceMessageNotice group_essence_changed = 23;
-    GroupRecallNotice group_recall = 24;
-    GroupMemberIncreasedNotice group_member_increase = 25;
-    GroupMemberDecreasedNotice group_member_decrease = 26;
-    GroupAdminChangedNotice group_admin_change = 27;
-    GroupMemberBanNotice group_member_ban = 28;
+    GroupRecallNotice group_recall = 21;
+    GroupFileUploadedNotice group_file_uploaded = 22;
+    GroupCardChangedNotice group_card_changed = 23;
+    GroupUniqueTitleChangedNotice group_member_unique_title_changed = 24;
+    GroupEssenceMessageNotice group_essence_changed = 25;
+    GroupMemberIncreasedNotice group_member_increase = 26;
+    GroupMemberDecreasedNotice group_member_decrease = 27;
+    GroupAdminChangedNotice group_admin_changed = 28;
     GroupSignInNotice group_sign_in = 29;
-    GroupWholeBanNotice group_whole_ban = 30;
-    GroupFileUploadedNotice group_file_uploaded = 31;
+    GroupMemberBanNotice group_member_ban = 30;
+    GroupWholeBanNotice group_whole_ban = 31;
+    GroupReactMessageWithEmojiNotice group_react_message_with_emoji = 32;
   }
 }
