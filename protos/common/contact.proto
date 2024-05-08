@@ -24,6 +24,13 @@ enum Scene {
   STRANGER = 9; // 陌生人
 }
 
+enum Role {
+  UNKNOWN = 0; // 未知
+  MEMBER = 1; // 普通成员
+  ADMIN = 2; // 管理员
+  OWNER = 3; // 群主
+}
+
 message Contact {
   Scene scene = 1;
   string peer = 2; // 群聊则为群号 私聊则为uid 频道消息则为频道号
@@ -34,4 +41,5 @@ message Sender {
   string uid = 1;
   optional uint64 uin = 2;
   optional string nick = 3;
+  optional Role role = 4;
 }
