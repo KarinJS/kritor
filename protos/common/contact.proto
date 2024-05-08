@@ -15,7 +15,7 @@ option go_package = "grpc/kritor/common";
 
 enum Scene {
   GROUP = 0; // 群聊
-  FRIEND = 1; // 私聊
+  FRIEND = 1; // 好友
   GUILD = 2; // 频道
   STRANGER_FROM_GROUP = 10; // 群临时会话
 
@@ -33,8 +33,8 @@ enum Role {
 
 message Contact {
   Scene scene = 1;
-  string peer = 2; // 群聊则为群号 私聊则为uid 频道消息则为频道号
-  optional string sub_peer = 3; // 群临时聊天则为群号 频道消息则为子频道号 其它情况可不提供
+  string peer = 2; // GROUP: group_id, FRIEND|STRANGER_FROM_GROUP|NEARBY|STRANGER: uid, GUILD: guild_id
+  optional string sub_peer = 3; // GUILD: channel_id, STRANGER_FROM_GROUP: group_id
 }
 
 message Sender {

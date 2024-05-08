@@ -18,9 +18,9 @@ message File {
   string file_name = 2;
   uint64 file_size = 3;
   int32 bus_id = 4;
-  uint32 upload_time = 5;
-  uint32 expire_time = 6;
-  uint32 modify_time = 7;
+  uint64 upload_time = 5;
+  uint64 expire_time = 6;
+  uint64 modify_time = 7;
   uint32 download_times = 8;
   uint64 uploader = 9;
   string uploader_name = 10;
@@ -33,7 +33,7 @@ message Folder {
   string folder_id = 1;
   string folder_name = 2;
   uint32 total_file_count = 3;
-  uint32 create_time = 4;
+  uint64 create_time = 4;
   uint64 creator = 5;
   string creator_name = 6;
 }

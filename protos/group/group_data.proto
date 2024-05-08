@@ -31,7 +31,7 @@ message NotJoinedGroupInfo {
   string group_name = 4;
   string group_desc = 5;
   uint64 owner = 6;
-  uint32 create_time = 7;
+  uint64 create_time = 7;
 
   uint32 group_flag = 8; // 群聊类型什么的都在这里，如果获取不到可以不实现
   uint32 group_flag_ext = 9; // 扩展群聊类型
@@ -40,7 +40,7 @@ message NotJoinedGroupInfo {
 message ProhibitedUserInfo {
   string uid = 1;
   uint64 uin = 2;
-  uint32 prohibited_time = 3;
+  uint64 prohibited_time = 3;
 }
 
 message GroupHonorInfo {
@@ -66,12 +66,12 @@ message GroupMemberInfo {
   string nick = 3;
   uint32 age = 4;
   string unique_title = 5;
-  uint32 unique_title_expire_time = 6;
+  uint64 unique_title_expire_time = 6;
   string card = 7;
   uint64 join_time = 8;
   uint64 last_active_time = 9;
   uint32 level = 10;
-  uint64 shut_up_timestamp = 11;
+  uint64 shut_up_time = 11;
 
   optional uint32 distance = 100;
   repeated uint32 honors = 101;

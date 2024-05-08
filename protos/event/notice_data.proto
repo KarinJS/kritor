@@ -35,7 +35,7 @@ message PrivateFileUploadedNotice {
   string file_sub_id = 4;
   string file_name = 5;
   uint64 file_size = 6;
-  uint32 expire_time = 7;
+  uint64 expire_time = 7;
   string url = 8;
 }
 
@@ -68,7 +68,7 @@ message GroupFileUploadedNotice {
   string file_name = 5;
   uint64 file_size = 6;
   int32 bus_id = 7;
-  uint32 expire_time = 8;
+  uint64 expire_time = 8;
   string file_url = 9;
 }
 

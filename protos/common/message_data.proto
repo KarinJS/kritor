@@ -17,7 +17,7 @@ import "common/contact.proto";
 import "common/message_element.proto";
 
 message PushMessageBody {
-  uint32 time = 1;
+  uint64 time = 1;
   string message_id = 2;
   uint64 message_seq = 3;
   Contact contact = 4;           // 从什么地方收到的信息
@@ -40,8 +40,8 @@ message EssenceMessageBody {
   uint64 operator_uid = 5;
   uint64 operator_uin = 6;
   string operator_nick = 7;
-  uint32 operation_time = 8;
-  uint32 message_time = 9;
+  uint64 operation_time = 8;
+  uint64 message_time = 9;
   string message_id = 10;
   uint64 message_seq = 11;
   string json_elements = 12;

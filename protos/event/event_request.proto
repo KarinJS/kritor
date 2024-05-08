@@ -25,7 +25,7 @@ message RequestEvent {
   }
   
   RequestType type = 1;
-  uint32 time  = 2;
+  uint64 time  = 2;
   string request_id = 3;
 
   oneof request {

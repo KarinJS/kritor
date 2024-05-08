@@ -119,7 +119,7 @@ message SendChannelMessageRequest {
 // 发送信息到子频道响应
 message SendChannelMessageResponse {
   string message_id = 1; // 消息ID
-  int64 time = 2; // 时间
+  uint64 message_time = 2; // 时间
 }
 
 // 获取频道帖子广场帖子请求
