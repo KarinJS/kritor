@@ -114,7 +114,7 @@ message ImageElement {
   }
   optional string file_md5 = 5;
   optional uint32 sub_type = 6;
-  optional ImageType type = 10;
+  optional ImageType file_type = 10;
 }
 
 message VoiceElement {
@@ -148,7 +148,7 @@ message RpsElement { uint32 id = 1; }
 
 message PokeElement {
   uint32 id = 1;       // 戳一戳id
-  uint32 type = 2;     // 戳一戳类型
+  uint32 poke_type = 2;     // 戳一戳类型
   uint32 strength = 3; // 戳一戳强度
 }
 
