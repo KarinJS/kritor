@@ -36,6 +36,8 @@ service GroupService {
   rpc GetRemainCountAtAll(GetRemainCountAtAllRequest) returns (GetRemainCountAtAllResponse); // 获取艾特全体成员剩余次数
   rpc GetNotJoinedGroupInfo(GetNotJoinedGroupInfoRequest) returns (GetNotJoinedGroupInfoResponse); // 获取未加入群组信息
   rpc GetGroupHonor(GetGroupHonorRequest) returns (GetGroupHonorResponse); // 获取群荣誉信息
+  
+  rpc UploadGroupFile(stream UploadGroupFileRequest) returns (UploadGroupFileResponse); // 上传群文件
 }
 
 message BanMemberRequest {
@@ -213,4 +215,21 @@ message GetGroupHonorRequest {
 
 message GetGroupHonorResponse {
   repeated GroupHonorInfo group_honors_info = 1; // 群荣誉信息
+}
+
+message UploadGroupFileRequest {
+  string group_id = 1; // 群号
+  string file = 2; // 本地文件绝对路径
+  string name = 3; // 文件名称
+  optional string folder = 4; // 父目录ID 不提供则上传到根目录
+}
+
+message UploadGroupFileResponse {
+  string file_id = 1; // 文件ID
+  string file_url = 2; // 文件URL
+  optional string file_name = 3; // 文件名
+  optional string file_size = 4; // 文件大小
+  optional string file_bizid = 5; // 文件bizid
+  optional string file_sha = 6; // 文件sha
+  optional string file_md5 = 7; // 文件md5
 }
