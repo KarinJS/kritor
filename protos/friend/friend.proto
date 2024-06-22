@@ -28,7 +28,7 @@ service FriendService {
   rpc GetUidByUin(GetUidByUinRequest) returns (GetUidByUinResponse); // 获取uid
   rpc GetUinByUid(GetUinByUidRequest) returns (GetUinByUidResponse); // 获取uin
 
-  rpc UploadPrivateFile(stream PrivateChatFile) returns (UploadPrivateChatFileResponse); // 上传私聊文件
+  rpc UploadPrivateFile(stream PrivateChatFileRequest) returns (UploadPrivateChatFileResponse); // 上传私聊文件
 }
 
 message GetFriendListRequest {
@@ -108,7 +108,7 @@ message GetUinByUidResponse {
   map<string, uint64> uin_map = 1;
 }
 
-message PrivateChatFile {
+message PrivateChatFileRequest {
   string user_id = 1; // 用户id
   string file = 2; // 本地文件绝对路径
   string name = 3; // 文件名称
