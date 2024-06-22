@@ -37,7 +37,7 @@ service GroupService {
   rpc GetNotJoinedGroupInfo(GetNotJoinedGroupInfoRequest) returns (GetNotJoinedGroupInfoResponse); // 获取未加入群组信息
   rpc GetGroupHonor(GetGroupHonorRequest) returns (GetGroupHonorResponse); // 获取群荣誉信息
   
-  rpc UploadGroupFile(stream UploadGroupFileRequest) returns (UploadGroupFileResponse); // 上传群文件
+  rpc UploadGroupFile(UploadGroupFileRequest) returns (UploadGroupFileResponse); // 上传群文件
 }
 
 message BanMemberRequest {
