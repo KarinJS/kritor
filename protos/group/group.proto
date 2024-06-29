@@ -218,7 +218,7 @@ message GetGroupHonorResponse {
 }
 
 message UploadGroupFileRequest {
-  string group_id = 1; // 群号
+  uint64 group_id = 1; // 群号
   string file = 2; // 本地文件绝对路径
   string name = 3; // 文件名称
   optional string folder = 4; // 父目录ID 不提供则上传到根目录
