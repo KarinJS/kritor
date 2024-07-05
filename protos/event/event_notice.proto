@@ -36,6 +36,10 @@ message NoticeEvent {
     GROUP_MEMBER_BAN = 30; // 群成员被禁言
     GROUP_WHOLE_BAN = 31; // 群全员禁言
     GROUP_REACT_MESSAGE_WITH_EMOJI = 32; // 群消息被表情回应
+    GROUP_TRANSFER = 33; // 群转让
+
+    FRIEND_INCREASE = 40; // 好友增加
+    FRIEND_DECREASE = 41; // 好友减少
   }
 
   NoticeType type = 1;
@@ -60,5 +64,9 @@ message NoticeEvent {
     GroupMemberBanNotice group_member_ban = 30;
     GroupWholeBanNotice group_whole_ban = 31;
     GroupReactMessageWithEmojiNotice group_react_message_with_emoji = 32;
+    GroupTransferNotice group_transfer = 33;
+
+    FriendIncreasedNotice friend_increase = 40;
+    FriendDecreasedNotice friend_decrease = 41;
   }
 }

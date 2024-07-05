@@ -170,3 +170,23 @@ message GroupReactMessageWithEmojiNotice {
   uint32 face_id = 3;
   bool is_set = 4;
 }
+
+message GroupTransferNotice {
+  uint64 group_id = 1;
+  string operator_uid = 2;
+  uint64 operator_uin = 3;
+  string target_uid = 4;
+  uint64 target_uin = 5;
+}
+
+message FriendIncreasedNotice {
+  string friend_uid = 1;
+  uint64 friend_uin = 2;
+  optional string friend_nick = 3
+}
+
+message FriendDecreasedNotice {
+  string friend_uid = 1;
+  uint64 friend_uin = 2;
+  optional string friend_nick = 3;
+}
