@@ -182,7 +182,7 @@ message GroupTransferNotice {
 message FriendIncreasedNotice {
   string friend_uid = 1;
   uint64 friend_uin = 2;
-  optional string friend_nick = 3
+  optional string friend_nick = 3;
 }
 
 message FriendDecreasedNotice {
