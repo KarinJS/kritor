@@ -48,12 +48,17 @@ message GetVersionResponse {
 
 ```protobuf
 message DownloadFileRequest {
+  message Header {
+    string key = 1; // 请求头的 Key
+    string value = 2; // 请求头的 Value
+  }
+  
   optional string url = 1; // 下载文件的URL 二选一
   optional string base64 = 2; // 下载文件的base64 二选一
   optional string root_path = 3; // 下载文件的根目录 需要保证Kritor有该目录访问权限 可选
   optional string file_name = 4; // 保存的文件名称 默认为文件MD5 可选
   optional uint32 thread_cnt = 5; // 下载文件的线程数 默认为3 可选
-  optional string headers = 6; // 下载文件的请求头 可选
+  repeated Heander headers = 6; // 下载文件的请求头 可选
 }
 
 message DownloadFileResponse {
@@ -65,14 +70,6 @@ message DownloadFileResponse {
 > `root_path`需要保证Kritor有该目录访问权限，否则会报错。
 > 
 > `file_name`默认为文件MD5，如果你需要指定文件名，请填写。
-
-#### Headers示例
-
-`[\r\n]` 为分隔符，用于分隔多个头部字。
-
-```json
-"User-Agent=YOUR_UA[\r\n]Referer=https://www.baidu.com"
-```
 
 ## 获取当前账户
 
