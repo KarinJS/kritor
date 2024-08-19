@@ -38,19 +38,17 @@ message NotJoinedGroupInfo {
 }
 
 message ProhibitedUserInfo {
-  string uid = 1;
-  uint64 uin = 2;
-  uint64 prohibited_time = 3;
+  uint64 uin = 1;
+  uint64 prohibited_time = 2;
 }
 
 message GroupHonorInfo {
-  string uid = 1; // 荣誉成员uid
-  uint64 uin = 2; // 荣誉成员uin
-  string nick = 3; // 荣誉成员昵称
-  string honor_name = 4; // 荣誉名称
-  string avatar = 5; // 荣誉图标url
-  uint32 id = 6; // 荣誉id
-  string description = 7; // 荣誉描述
+  uint64 uin = 1; // 荣誉成员uin
+  string nick = 2; // 荣誉成员昵称
+  string honor_name = 3; // 荣誉名称
+  string avatar = 4; // 荣誉图标url
+  uint32 id = 5; // 荣誉id
+  string description = 6; // 荣誉描述
 }
 
 enum MemberRole {
@@ -61,17 +59,16 @@ enum MemberRole {
 }
 
 message GroupMemberInfo {
-  string uid = 1;
-  uint64 uin = 2;
-  string nick = 3;
-  uint32 age = 4;
-  string unique_title = 5;
-  uint64 unique_title_expire_time = 6;
-  string card = 7;
-  uint64 join_time = 8;
-  uint64 last_active_time = 9;
-  uint32 level = 10;
-  uint64 shut_up_time = 11;
+  uint64 uin = 1;
+  string nick = 2;
+  uint32 age = 3;
+  string unique_title = 4;
+  uint64 unique_title_expire_time = 5;
+  string card = 6;
+  uint64 join_time = 7;
+  uint64 last_active_time = 8;
+  uint32 level = 9;
+  uint64 shut_up_time = 10;
 
   optional uint32 distance = 100;
   repeated uint32 honors = 101;

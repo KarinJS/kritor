@@ -25,9 +25,6 @@ service FriendService {
   rpc IsBlackListUser(IsBlackListUserRequest) returns (IsBlackListUserResponse); // 是否是黑名单用户
   rpc VoteUser(VoteUserRequest) returns (VoteUserResponse); // 点赞好友
 
-  rpc GetUidByUin(GetUidByUinRequest) returns (GetUidByUinResponse); // 获取uid
-  rpc GetUinByUid(GetUinByUidRequest) returns (GetUinByUidResponse); // 获取uin
-
   rpc UploadPrivateFile(PrivateChatFileRequest) returns (UploadPrivateChatFileResponse); // 上传私聊文件
 }
 
@@ -40,8 +37,7 @@ message GetFriendListResponse {
 }
 
 message GetFriendProfileCardRequest {
-  repeated string target_uids = 1;
-  repeated uint64 target_uins = 2;
+  repeated uint64 target_uins = 1;
 }
 
 message GetFriendProfileCardResponse {
@@ -49,8 +45,7 @@ message GetFriendProfileCardResponse {
 }
 
 message GetStrangerProfileCardRequest {
-  repeated string target_uids = 1;
-  repeated uint64 target_uins = 2;
+  repeated uint64 target_uins = 1;
 }
 
 message GetStrangerProfileCardResponse {
@@ -71,10 +66,7 @@ message SetProfileCardResponse {
 }
 
 message IsBlackListUserRequest {
-  oneof target {
-    string target_uid = 1;
-    uint64 target_uin = 2;
-  }
+  uint64 target_uin = 1;
 }
 
 message IsBlackListUserResponse {
@@ -82,30 +74,11 @@ message IsBlackListUserResponse {
 }
 
 message VoteUserRequest {
-  oneof target {
-    string target_uid = 1;
-    uint64 target_uin = 2;
-  }
-  uint32 vote_count = 3;
+  uint64 target_uin = 1;
+  uint32 vote_count = 2;
 }
 
 message VoteUserResponse {
-}
-
-message GetUidByUinRequest {
-  repeated uint64 target_uins = 1;
-}
-
-message GetUidByUinResponse {
-  map<uint64, string> uid_map = 1;
-}
-
-message GetUinByUidRequest {
-  repeated string target_uids = 1;
-}
-
-message GetUinByUidResponse {
-  map<string, uint64> uin_map = 1;
 }
 
 message PrivateChatFileRequest {

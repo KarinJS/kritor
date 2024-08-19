@@ -80,8 +80,7 @@ message TextElement {
 }
 
 message AtElement {
-  string uid = 1; // 全体成员这里请写all
-  optional uint64 uin = 2;
+  uint64 uin = 1; // 全体成员这里请写all
 }
 
 message FaceElement {
