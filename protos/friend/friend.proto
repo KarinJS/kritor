@@ -71,10 +71,7 @@ message SetProfileCardResponse {
 }
 
 message IsBlackListUserRequest {
-  oneof target {
-    string target_uid = 1;
-    uint64 target_uin = 2;
-  }
+  string target_id = 1;
 }
 
 message IsBlackListUserResponse {
@@ -82,11 +79,8 @@ message IsBlackListUserResponse {
 }
 
 message VoteUserRequest {
-  oneof target {
-    string target_uid = 1;
-    uint64 target_uin = 2;
-  }
-  uint32 vote_count = 3;
+  string target_id = 1;
+  uint32 vote_count = 2;
 }
 
 message VoteUserResponse {

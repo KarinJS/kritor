@@ -52,13 +52,13 @@ message GetCurrentAccountRequest {
 }
 
 message GetCurrentAccountResponse {
-  string account_uid = 1; // 当前账户
-  uint64 account_uin = 2;
-  string account_name = 3; // 当前账户名称
+  string account_uin = 1; // 当前账户
+  string account_name = 2; // 当前账户名称
+  optional string account_uid = 3; // 当前账户uid
 }
 
 message SwitchAccountRequest {
-  oneof account {
+  oneof account { // 暂时保持不动 待后续商讨确认
     string account_uid = 1; // 切换账户uid
     uint64 account_uin = 2; // 切换账户uin
   }
