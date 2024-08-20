@@ -10,22 +10,29 @@
 
 ```protobuf
 enum NoticeType {
-  FRIEND_POKE = 0; // 好友头像戳一戳
-  FRIEND_RECALL = 1; // 好友消息撤回
-  FRIEND_FILE_COME = 2; // 私聊文件上传
+  UNKNOWN = 0;
 
-  GROUP_POKE = 12; // 群头像戳一戳
-  GROUP_CARD_CHANGED = 13; // 群名片改变
-  GROUP_MEMBER_UNIQUE_TITLE_CHANGED = 14; // 群成员专属头衔改变
-  GROUP_ESSENCE_CHANGED = 15; // 群精华消息改变
-  GROUP_RECALL = 16; // 群消息撤回
-  GROUP_MEMBER_INCREASE = 17; // 群成员增加
-  GROUP_MEMBER_DECREASE = 18; // 群成员减少
-  GROUP_ADMIN_CHANGED = 19; // 群管理员变动
-  GROUP_MEMBER_BANNED = 20; // 群成员被禁言
-  GROUP_SIGN = 21; // 群签到
-  GROUP_WHOLE_BAN = 22; // 群全员禁言
-  GROUP_FILE_COME = 23; // 群文件上传
+  PRIVATE_POKE = 10; // 私聊头像戳一戳
+  PRIVATE_RECALL = 11; // 私聊消息撤回
+  PRIVATE_FILE_UPLOADED = 12; // 私聊文件上传
+
+  GROUP_POKE = 20; // 群头像戳一戳
+  GROUP_RECALL = 21; // 群消息撤回
+  GROUP_FILE_UPLOADED = 22; // 群文件上传
+  GROUP_CARD_CHANGED = 23; // 群名片改变
+  GROUP_MEMBER_UNIQUE_TITLE_CHANGED = 24; // 群成员专属头衔改变
+  GROUP_ESSENCE_CHANGED = 25; // 群精华消息改变
+  GROUP_MEMBER_INCREASE = 26; // 群成员增加
+  GROUP_MEMBER_DECREASE = 27; // 群成员减少
+  GROUP_ADMIN_CHANGED = 28; // 群管理员变动
+  GROUP_SIGN_IN = 29; // 群签到
+  GROUP_MEMBER_BAN = 30; // 群成员被禁言
+  GROUP_WHOLE_BAN = 31; // 群全员禁言
+  GROUP_REACT_MESSAGE_WITH_EMOJI = 32; // 群消息被表情回应
+  GROUP_TRANSFER = 33; // 群转让
+
+  FRIEND_INCREASE = 40; // 好友增加
+  FRIEND_DECREASE = 41; // 好友减少
 }
 ```
 

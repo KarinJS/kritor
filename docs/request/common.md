@@ -33,8 +33,8 @@ message Contact {
 }
 
 message Sender {
-  string uid = 1;
-  optional uint64 uin = 2;
+  optional string uid = 1;
+  uint64 uin = 2;
   optional string nick = 3;
 }
 ```

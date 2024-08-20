@@ -19,8 +19,8 @@
 
 ```protobuf
 message FriendInfo {
-  string uid = 1; // uid 'u_*********'
-  uint64 uin = 2; // qq 如果没有可不提供
+  optional string uid = 1; // uid 'u_*********'
+  uint64 uin = 2; // qq
   string qid = 3; // qid 用户自定义的qid 如若没有则为空
 
   string nick = 4;     // 名称
@@ -36,7 +36,7 @@ message FriendInfo {
 }
 
 message ProfileCard {
-  string uid = 1;
+  optional string uid = 1;
   uint64 uin = 2;
   string qid = 3;
 

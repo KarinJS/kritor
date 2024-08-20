@@ -53,7 +53,7 @@ message DownloadFileRequest {
   optional string root_path = 3; // 下载文件的根目录 需要保证Kritor有该目录访问权限 可选
   optional string file_name = 4; // 保存的文件名称 默认为文件MD5 可选
   optional uint32 thread_cnt = 5; // 下载文件的线程数 默认为3 可选
-  optional string headers = 6; // 下载文件的请求头 可选
+  map<string, string> headers = 6; // 下载文件的请求头
 }
 
 message DownloadFileResponse {
@@ -65,14 +65,6 @@ message DownloadFileResponse {
 > `root_path`需要保证Kritor有该目录访问权限，否则会报错。
 > 
 > `file_name`默认为文件MD5，如果你需要指定文件名，请填写。
-
-#### Headers示例
-
-`[\r\n]` 为分隔符，用于分隔多个头部字。
-
-```json
-"User-Agent=YOUR_UA[\r\n]Referer=https://www.baidu.com"
-```
 
 ## 获取当前账户
 
@@ -90,7 +82,7 @@ message DownloadFileResponse {
 message GetCurrentAccountRequest {}
 
 message GetCurrentAccountResponse {
-  string account_uid = 1; // 当前账户
+  optional string account_uid = 1; // 当前账户
   uint64 account_uin = 2;
   string account_name = 3; // 当前账户名称
 }

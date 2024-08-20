@@ -14,22 +14,22 @@ option java_package = "io.kritor.event";
 option go_package = "grpc/kritor/event";
 
 message FriendApplyRequest {
-  string applier_uid = 1;
+  optional string applier_uid = 1;
   uint64 applier_uin = 2;
   string message = 3;
 }
 
 message GroupApplyRequest {
   uint64 group_id = 1;
-  string applier_uid = 2;
+  optional string applier_uid = 2;
   uint64 applier_uin = 3;
-  string inviter_uid = 4;
+  optional string inviter_uid = 4;
   uint64 inviter_uin = 5;
   string reason = 6;
 }
 
 message InvitedJoinGroupRequest {
   uint64 group_id = 1;
-  string inviter_uid = 2;
+  optional string inviter_uid = 2;
   uint64 inviter_uin = 3;
 }

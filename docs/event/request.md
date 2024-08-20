@@ -10,9 +10,11 @@
 
 ```protobuf
 enum RequestType {
-  FRIEND_APPLY = 0;
-  GROUP_APPLY = 1;
-  INVITED_GROUP = 2;
+  UNKNOWN = 0;
+  
+  FRIEND_APPLY = 10;
+  GROUP_APPLY = 11;
+  INVITED_GROUP = 12;
 }
 ```
 

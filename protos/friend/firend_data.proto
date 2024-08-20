@@ -14,7 +14,7 @@ option java_package = "io.kritor.friend";
 option go_package = "grpc/kritor/friend";
 
 message FriendInfo {
-  string uid = 1; // uid 'u_*********'
+  optional string uid = 1; // uid 'u_*********'
   uint64 uin = 2; // qq 如果没有可不提供
   string qid = 3; // qid 用户自定义的qid 如若没有则为空
 
@@ -31,7 +31,7 @@ message FriendInfo {
 }
 
 message ProfileCard {
-  string uid = 1;
+  optional string uid = 1;
   uint64 uin = 2;
   string qid = 3;
 

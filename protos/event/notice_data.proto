@@ -14,7 +14,7 @@ option java_package = "io.kritor.event";
 option go_package = "grpc/kritor/event";
 
 message PrivatePokeNotice {
-  string operator_uid = 1;
+  optional string operator_uid = 1;
   uint64 operator_uin = 2;
   string action = 3;
   string suffix = 4;
@@ -22,14 +22,14 @@ message PrivatePokeNotice {
 }
 
 message PrivateRecallNotice {
-  string operator_uid = 1;
+  optional string operator_uid = 1;
   uint64 operator_uin = 2;
   string message_id = 3;
   string tip_text = 4;
 }
 
 message PrivateFileUploadedNotice {
-  string operator_uid = 1;
+  optional string operator_uid = 1;
   uint64 operator_uin = 2;
   string file_id = 3;
   int32 file_sub_id = 4;
@@ -41,9 +41,9 @@ message PrivateFileUploadedNotice {
 
 message GroupPokeNotice {
   uint64 group_id = 1;
-  string operator_uid = 2;
+  optional string operator_uid = 2;
   uint64 operator_uin = 3;
-  string target_uid = 4;
+  optional string target_uid = 4;
   uint64 target_uin = 5;
   string action = 6;
   string suffix = 7;
@@ -52,9 +52,9 @@ message GroupPokeNotice {
 
 message GroupRecallNotice {
   uint64 group_id = 1;
-  string operator_uid = 2;
+  optional string operator_uid = 2;
   uint64 operator_uin = 3;
-  string target_uid = 4;
+  optional string target_uid = 4;
   uint64 target_uin = 5;
   string message_id = 6;
   string tip_text = 7;
@@ -62,7 +62,7 @@ message GroupRecallNotice {
 
 message GroupFileUploadedNotice {
   uint64 group_id = 1;
-  string operator_uid = 2;
+  optional string operator_uid = 2;
   uint64 operator_uin = 3;
   string file_id = 4;
   string file_name = 5;
@@ -74,25 +74,25 @@ message GroupFileUploadedNotice {
 
 message GroupCardChangedNotice {
   uint64 group_id = 1;
-  string operator_uid = 2;
+  optional string operator_uid = 2;
   uint64 operator_uin = 3;
-  string target_uid = 4;
+  optional string target_uid = 4;
   uint64 target_uin = 5;
   string new_card = 6;
 }
 
 message GroupUniqueTitleChangedNotice {
   uint64 group_id = 1;
-  string target_uid = 2;
+  optional string target_uid = 2;
   uint64 target_uin = 3;
   string title = 4;
 }
 
 message GroupEssenceMessageNotice {
   uint64 group_id = 1;
-  string operator_uid = 2;
+  optional string operator_uid = 2;
   uint64 operator_uin = 3;
-  string target_uid = 4;
+  optional string target_uid = 4;
   uint64 target_uin = 5;
   string message_id = 6;
   bool is_set = 7;
@@ -105,9 +105,9 @@ message GroupMemberIncreasedNotice {
   }
 
   uint64 group_id = 1;
-  string operator_uid = 2;
+  optional string operator_uid = 2;
   uint64 operator_uin = 3;
-  string target_uid = 4;
+  optional string target_uid = 4;
   uint64 target_uin = 5;
   GroupMemberIncreasedType type = 6;
 }
@@ -129,14 +129,14 @@ message GroupMemberDecreasedNotice {
 
 message GroupAdminChangedNotice {
   uint64 group_id = 1;
-  string target_uid = 4;
+  optional string target_uid = 4;
   uint64 target_uin = 5;
   bool is_admin = 6;
 }
 
 message GroupSignInNotice {
   uint64 group_id = 1;
-  string target_uid = 2;
+  optional string target_uid = 2;
   uint64 target_uin = 3;
   string action = 4;
   string rank_image = 6;
@@ -149,9 +149,9 @@ message GroupMemberBanNotice {
   }
   
   uint64 group_id = 1;
-  string operator_uid = 2;
+  optional string operator_uid = 2;
   uint64 operator_uin = 3;
-  string target_uid = 4;
+  optional string target_uid = 4;
   uint64 target_uin = 5;
   int32 duration = 6;
   GroupMemberBanType type = 7;
@@ -159,7 +159,7 @@ message GroupMemberBanNotice {
 
 message GroupWholeBanNotice {
   uint64 group_id = 1;
-  string operator_uid = 2;
+  optional string operator_uid = 2;
   uint64 operator_uin = 3;
   bool is_ban = 4;
 }
@@ -173,20 +173,20 @@ message GroupReactMessageWithEmojiNotice {
 
 message GroupTransferNotice {
   uint64 group_id = 1;
-  string operator_uid = 2;
+  optional string operator_uid = 2;
   uint64 operator_uin = 3;
-  string target_uid = 4;
+  optional string target_uid = 4;
   uint64 target_uin = 5;
 }
 
 message FriendIncreasedNotice {
-  string friend_uid = 1;
+  optional string friend_uid = 1;
   uint64 friend_uin = 2;
   optional string friend_nick = 3;
 }
 
 message FriendDecreasedNotice {
-  string friend_uid = 1;
+  optional string friend_uid = 1;
   uint64 friend_uin = 2;
   optional string friend_nick = 3;
 }

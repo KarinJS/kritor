@@ -20,9 +20,13 @@ message PushMessageBody {
   uint64 time = 1;
   string message_id = 2;
   uint64 message_seq = 3;
-  Contact contact = 4;           // 从什么地方收到的信息
-  Sender sender = 5;             // 发送者详细信息
-  repeated Element elements = 6; // 发的什么东西
+  Scene scene = 4;
+  oneof sender {
+    PrivateSender private = 5;
+    GroupSender group = 6;
+    GuildSender guild = 7;
+  }
+  repeated Element elements = 9; // 发的什么东西
 }
 
 message ForwardMessageBody {
@@ -34,10 +38,10 @@ message ForwardMessageBody {
 
 message EssenceMessageBody {
   uint32 group_id = 1;
-  string sender_uid = 2;
+  optional string sender_uid = 2;
   uint64 sender_uin = 3;
   string sender_nick = 4;
-  uint64 operator_uid = 5;
+  optional uint64 operator_uid = 5;
   uint64 operator_uin = 6;
   string operator_nick = 7;
   uint64 operation_time = 8;

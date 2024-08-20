@@ -41,13 +41,13 @@ message NotJoinedGroupInfo {
 }
 
 message ProhibitedUserInfo {
-  string uid = 1;
+  optional string uid = 1;
   uint64 uin = 2;
   uint32 prohibited_time = 3;
 }
 
 message GroupHonorInfo {
-  string uid = 1; // 荣誉成员uid
+  optional string uid = 1; // 荣誉成员uid
   uint64 uin = 2; // 荣誉成员uin
   string nick = 3; // 荣誉成员昵称
   string honor_name = 4; // 荣誉名称
@@ -64,7 +64,7 @@ enum MemberRole {
 }
 
 message GroupMemberInfo {
-  string uid = 1;
+  optional string uid = 1;
   uint64 uin = 2;
   string nick = 3;
   uint32 age = 4;
@@ -386,8 +386,8 @@ message GetGroupListResponse {
 message GetGroupMemberInfoRequest {
   uint64 group_id = 1; // 群组ID
   oneof target{
-    string uid = 2; // 目标uid
-    uint64 uin = 3; // 目标uin
+    string target_uid = 2; // 目标uid
+    uint64 target_uin = 3; // 目标uin
   }
   optional bool refresh = 4; // 是否刷新缓存
 }
@@ -434,8 +434,8 @@ message GetGroupMemberListResponse {
 
 ```protobuf
 message ProhibitedUserInfo {
-  string uid = 1;
-  uint64 uin = 2;
+  optional string target_uid = 1;
+  uint64 target_uin = 2;
   uint32 prohibited_time = 3;
 }
 
@@ -521,7 +521,7 @@ message GetNotJoinedGroupInfoResponse {
 
 ```protobuf
 message GroupHonorInfo {
-  string uid = 1; // 荣誉成员uid
+  optional string uid = 1; // 荣誉成员uid
   uint64 uin = 2; // 荣誉成员uin
   string nick = 3; // 荣誉成员昵称
   string honor_name = 4; // 荣誉名称

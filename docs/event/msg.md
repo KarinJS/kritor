@@ -24,7 +24,7 @@ enum Scene {
 
 message Contact {
   Scene scene = 1;
-  string peer = 2; // 群聊则为群号 私聊则为QQ号
+  string peer = 2; // 群聊则为群号 私聊则为 Uix (Uin 或 Uid) 频道消息则为频道号
   optional string sub_peer = 3; // 群临时聊天则为群号 频道消息则为子频道号 其它情况可不提供
 }
 ```
@@ -43,16 +43,38 @@ message Contact {
 下方是一个完整的消息事件结构体：
 
 ```protobuf
-message MessageEvent {
-  uint32 time = 1;
-  Scene scene = 2;
-  uint64 message_id = 3;
-  uint64 message_seq = 4;
-  Contact contact = 5; // 从什么地方收到的信息
-  Sender sender = 6; // 谁发的
-  repeated Element elements = 7; // 发的什么东西
+message PrivateSender {
+  optional string uid = 1;
+  uint64 uin = 2;
+  optional string nick = 3;
+}
 
-  optional int32 temp_source = 50; // 临时消息来源
+message GroupSender {
+  optional string uid = 1;
+  uint64 uin = 2;
+  string group_id = 3;
+  optional Role role = 4;
+}
+
+message GuildSender {
+  string tiny_id = 1;
+  string guild_id = 3;
+  string channel_id = 4;
+  Role role = 5;
+}
+
+message PushMessageBody {
+  uint64 time = 1;
+  string message_id = 2;
+  uint64 message_seq = 3;
+  Scene scene = 4;
+  oneof sender {
+    PrivateSender private = 5;
+    GroupSender group = 6;
+    GuildSender guild = 7;
+  }
+  optional string nick = 8;
+  repeated Element elements = 9; // 发的什么东西
 }
 ```
 其中`message_id`作为接下来各种操作的主要对象，`message_seq`则是由腾讯维护的一个自增的序列号，用于标识消息的顺序，您也可以使用它反查一些它的`message_id`（**GetMessageBySeq**）。
