@@ -13,12 +13,13 @@
 
 ## 请求错误处理（主动Grpc）
 
-当Kritor端无法正常处理某个请求，或者请求失败的时候，将会使用Grpc的错误码来返回错误信息。 其中大量错误信息的描述通常在``status.description``中。
+当Kritor端无法正常处理某个请求，或者请求失败的时候，将会使用Grpc的错误码来返回错误信息。其中大量错误信息的描述通常在`status.description`中。
 
 除去Grpc用于保证传输稳定和网络波动的那几个状态码外，Kritor端还会使用以下状态码：
 
 - `OK`: 一切正常。
 - `INVALID_ARGUMENT`: 参数错误，例如群禁言没提供群号。
+- `UNSUPPORTED`: api不支持，例如协议端不支持使用uid。
 - `UNAUTHENTICATED`: 未认证，通常是鉴权失败或者越级调用。
 - `PERMISSION_DENIED`: 权限不足，例如没有权限解除群禁言或者无权使用某个服务。
 - `INTERNAL`: Kritor内部出现问题，例如数据库连接失败或者其他异常。
