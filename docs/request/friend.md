@@ -19,33 +19,31 @@
 
 ```protobuf
 message FriendInfo {
-  string uid = 1; // uid 'u_*********'
-  uint64 uin = 2; // qq 如果没有可不提供
-  string qid = 3; // qid 用户自定义的qid 如若没有则为空
+  string user_id = 1;  // qq
+  string qid = 2;      // qid 用户自定义的qid 如若没有则为空
+  string nick = 3;     // 名称
+  string remark = 4;   // 备注
+  uint32 level = 5;    // 等级
+  uint32 age = 6;      // 年龄
+  uint32 vote_cnt = 7; // 赞数量
+  int32 gender = 8;    // 性别 可不提供
+  int32 group_id = 9;  // 好友分组id
+  optional string uid = 10; // uid 'u_*********'
 
-  string nick = 4;     // 名称
-  string remark = 5;   // 备注
-  uint32 level = 6;    // 等级
-  uint32 age = 7;      // 年龄
-  uint32 vote_cnt = 8; // 赞数量
-  int32 gender = 9;    // 性别 可不提供
-  int32 group_id = 10; // 好友分组id
-
-  
   optional ExtInfo ext = 99; // 扩展信息，根据协议平台提供的扩展信息
 }
 
 message ProfileCard {
-  string uid = 1;
-  uint64 uin = 2;
-  string qid = 3;
+  string user_id = 1;
+  string qid = 2;
+  string nick = 3;
+  optional string remark = 4;
+  uint32 level = 5;
+  optional uint64 birthday = 6;
+  uint32 login_day = 7; // 登录天数
+  uint32 vote_cnt = 8;  // 点赞数
 
-  string nick = 4;
-  optional string remark = 5;
-  uint32 level = 6;
-  optional uint64 birthday = 7;
-  uint32 login_day = 8; // 登录天数
-  uint32 vote_cnt = 9;  // 点赞数
+  optional string uid = 10; // uid 'u_*********'
 
   /* 以下字段可以不实现 */
   optional bool is_school_verified = 51;

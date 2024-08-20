@@ -41,19 +41,20 @@ message NotJoinedGroupInfo {
 }
 
 message ProhibitedUserInfo {
-  string uid = 1;
-  uint64 uin = 2;
-  uint32 prohibited_time = 3;
+  string user_id = 1;
+  uint64 prohibited_time = 2;
+  optional string uid = 3;
 }
 
 message GroupHonorInfo {
-  string uid = 1; // 荣誉成员uid
-  uint64 uin = 2; // 荣誉成员uin
-  string nick = 3; // 荣誉成员昵称
-  string honor_name = 4; // 荣誉名称
-  string avatar = 5; // 荣誉图标url
-  uint32 id = 6; // 荣誉id
-  string description = 7; // 荣誉描述
+  string user_id = 1; // 荣誉成员qq
+  string nick = 2; // 荣誉成员昵称
+  string honor_name = 3; // 荣誉名称
+  string avatar = 4; // 荣誉图标url
+  uint32 id = 5; // 荣誉id
+  string description = 6; // 荣誉描述
+
+  optional string uid = 7; // 荣誉成员uid
 }
 
 enum MemberRole {
@@ -64,18 +65,18 @@ enum MemberRole {
 }
 
 message GroupMemberInfo {
-  string uid = 1;
-  uint64 uin = 2;
-  string nick = 3;
-  uint32 age = 4;
-  string unique_title = 5;
-  uint32 unique_title_expire_time = 6;
-  string card = 7;
-  uint64 join_time = 8;
-  uint64 last_active_time = 9;
-  uint32 level = 10;
-  uint64 shut_up_timestamp = 11;
+  string user_id = 1;
+  string nick = 2;
+  uint32 age = 3;
+  string unique_title = 4;
+  uint64 unique_title_expire_time = 5;
+  string card = 6;
+  uint64 join_time = 7;
+  uint64 last_active_time = 8;
+  uint32 level = 9;
+  uint64 shut_up_time = 10;
 
+  optional string uid = 11;
   optional uint32 distance = 100;
   repeated uint32 honors = 101;
   optional bool unfriendly = 102;
@@ -385,11 +386,8 @@ message GetGroupListResponse {
 ```protobuf
 message GetGroupMemberInfoRequest {
   uint64 group_id = 1; // 群组ID
-  oneof target{
-    string uid = 2; // 目标uid
-    uint64 uin = 3; // 目标uin
-  }
-  optional bool refresh = 4; // 是否刷新缓存
+  string user_id = 2; // 用户ID
+  optional bool refresh = 3; // 是否刷新缓存
 }
 
 message GetGroupMemberInfoResponse {
@@ -434,9 +432,9 @@ message GetGroupMemberListResponse {
 
 ```protobuf
 message ProhibitedUserInfo {
-  string uid = 1;
-  uint64 uin = 2;
-  uint32 prohibited_time = 3;
+  string user_id = 1;
+  uint64 prohibited_time = 2;
+  optional string uid = 3;
 }
 
 message GetProhibitedUserListRequest {
@@ -521,13 +519,14 @@ message GetNotJoinedGroupInfoResponse {
 
 ```protobuf
 message GroupHonorInfo {
-  string uid = 1; // 荣誉成员uid
-  uint64 uin = 2; // 荣誉成员uin
-  string nick = 3; // 荣誉成员昵称
-  string honor_name = 4; // 荣誉名称
-  string avatar = 5; // 荣誉图标url
-  uint32 id = 6; // 荣誉id
-  string description = 7; // 荣誉描述
+  string user_id = 1; // 荣誉成员qq
+  string nick = 2; // 荣誉成员昵称
+  string honor_name = 3; // 荣誉名称
+  string avatar = 4; // 荣誉图标url
+  uint32 id = 5; // 荣誉id
+  string description = 6; // 荣誉描述
+
+  optional string uid = 7; // 荣誉成员uid
 }
 
 message GetGroupHonorRequest {

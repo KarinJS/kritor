@@ -32,10 +32,10 @@ message Contact {
 其中的`scene`表示来自何方的类型，而`peer`则为来自何方，他有以下几种情况：
 
 - **GROUP**：`peer`为群号。
-- **FRIEND**：`peer`为QQ号或者用户`uid`。
+- **FRIEND**：`peer`为QQ号。
 - **GUILD**：`peer`为频道号，`sub_peer`为子频道号。
 - **NEARBY**：`peer`为QQ号或者用户`tiny_id`。
-- **STRANGER**：`peer`为QQ号或者用户`uid`。
+- **STRANGER**：`peer`为QQ号。
 - **STRANGER_FROM_GROUP**：`peer`为QQ，`sub_peer`为群号。
 
 ## 消息事件

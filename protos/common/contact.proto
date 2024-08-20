@@ -33,12 +33,12 @@ enum Role {
 
 message Contact {
   Scene scene = 1;
-  string peer = 2; // GROUP: group_id, FRIEND|STRANGER_FROM_GROUP|NEARBY|STRANGER: uid, GUILD: guild_id
+  string peer = 2; // GROUP: group_id, FRIEND|STRANGER_FROM_GROUP|NEARBY|STRANGER: qq, GUILD: guild_id
   optional string sub_peer = 3; // GUILD: channel_id, STRANGER_FROM_GROUP: group_id
 }
 
 message Sender {
-  uint64 uin = 1;
+  string user_id = 1; // qq
   optional string uid = 2;
   optional string nick = 3;
   optional Role role = 4;

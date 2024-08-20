@@ -162,11 +162,8 @@ message GetGroupListResponse {
 
 message GetGroupMemberInfoRequest {
   uint64 group_id = 1; // 群组ID
-  oneof target{
-    string target_uid = 2; // 获取目标uid
-    uint64 target_uin = 3; // 获取目标uin
-  }
-  optional bool refresh = 4; // 是否刷新缓存
+  string user_id = 2; // 用户ID
+  optional bool refresh = 3; // 是否刷新缓存
 }
 
 message GetGroupMemberInfoResponse {
