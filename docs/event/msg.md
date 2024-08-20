@@ -46,20 +46,21 @@ message Contact {
 message PrivateSender {
   optional string uid = 1;
   uint64 uin = 2;
-  optional string nick = 3;
+  string nick = 3;
 }
 
 message GroupSender {
-  optional string uid = 1;
-  uint64 uin = 2;
-  string group_id = 3;
-  optional Role role = 4;
+  string group_id = 1;
+  optional string uid = 2;
+  uint64 uin = 3;
+  string nick = 4;
 }
 
 message GuildSender {
-  string tiny_id = 1;
-  string guild_id = 3;
-  string channel_id = 4;
+  string guild_id = 1;
+  string channel_id = 2;
+  string tiny_id = 3;
+  string nick = 4;
   Role role = 5;
 }
 
@@ -73,7 +74,6 @@ message PushMessageBody {
     GroupSender group = 6;
     GuildSender guild = 7;
   }
-  optional string nick = 8;
   repeated Element elements = 9; // 发的什么东西
 }
 ```
