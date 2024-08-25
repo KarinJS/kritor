@@ -24,7 +24,7 @@ message GroupApplyRequest {
   optional string applier_uid = 2;
   uint64 applier_uin = 3;
   optional string inviter_uid = 4;
-  uint64 inviter_uin = 5;
+  optional uint64 inviter_uin = 5;
   string reason = 6;
 }
 

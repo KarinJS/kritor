@@ -20,10 +20,10 @@ message FriendInfo {
 
   string nick = 4;     // 名称
   string remark = 5;   // 备注
-  uint32 level = 6;    // 等级
-  uint32 age = 7;      // 年龄
-  uint32 vote_cnt = 8; // 赞数量
-  int32 gender = 9;    // 性别 可不提供
+  optional uint32 level = 6;    // 等级
+  optional uint32 age = 7;      // 年龄
+  optional uint32 vote_cnt = 8; // 赞数量
+  optional int32 gender = 9;    // 性别
   int32 friend_group_id = 10; // 好友分组id
 
   

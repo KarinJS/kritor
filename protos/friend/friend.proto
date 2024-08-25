@@ -109,9 +109,10 @@ message GetUinByUidResponse {
 }
 
 message PrivateChatFileRequest {
-  string user_id = 1; // 用户id
-  string file = 2; // 本地文件绝对路径
-  string name = 3; // 文件名称
+  string target_uid = 1; // 用户id
+  uint64 target_uin = 2; // 用户id
+  string file = 3; // 本地文件绝对路径
+  string name = 4; // 文件名称
 }
 
 message UploadPrivateChatFileResponse {
