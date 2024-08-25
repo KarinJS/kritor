@@ -73,7 +73,7 @@ message SetMessageReadResponse {
 
 message RecallMessageRequest {
   kritor.common.Contact contact = 1; // 要撤回的目标，私聊则为对方，而不是写自己
-  string message_id = 2; // 要撤回的消息ID，消息id固有格式：前32bit为时间戳，后32bit为扩展字段，可携带聊天类型等各种信息
+  string message_id = 2; // 要撤回的消息ID
 }
 
 message RecallMessageResponse {
