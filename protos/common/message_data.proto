@@ -19,8 +19,8 @@ import "common/message_element.proto";
 message PushMessageBody {
   uint64 time = 1;
   // 消息 id
-  // 长度 |           1           |        20         |           20          |           20            |
-  // 内容 | 群聊为 'g' 私聊为 'p' | 群 uin 或好友 uin | 时间戳 (群聊可以为 0) | 消息 Seq (私聊可以为 0) |
+  // 长度 |           1           |        20         |           20            |
+  // 内容 | 群聊为 'g' 私聊为 'p' | 群 uin 或好友 uin | 消息 Seq (私聊可以为 0) |
   string message_id = 2; 
   uint64 message_seq = 3;
   Scene scene = 4;
