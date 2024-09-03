@@ -17,12 +17,12 @@
 
 除去Grpc用于保证传输稳定和网络波动的那几个状态码外，Kritor端还会使用以下状态码：
 
-- `OK`: 一切正常。
-- `INVALID_ARGUMENT`: 参数错误，例如群禁言没提供群号。
-- `UNIMPLEMENTED`: api不支持，例如协议端不支持使用uid。
-- `UNAUTHENTICATED`: 未认证，通常是鉴权失败或者越级调用。
-- `PERMISSION_DENIED`: 权限不足，例如没有权限解除群禁言或者无权使用某个服务。
-- `INTERNAL`: Kritor内部出现问题，例如数据库连接失败或者其他异常。
+- `OK (code 0)`: 一切正常。
+- `INVALID_ARGUMENT (code 3)`: 参数错误，例如群禁言没提供群号。
+- `UNIMPLEMENTED (code 12)`: api不支持，例如协议端不支持使用uid。
+- `UNAUTHENTICATED (code 16)`: 未认证，通常是鉴权失败或者越级调用。
+- `PERMISSION_DENIED (code 7)`: 权限不足，例如没有权限解除群禁言或者无权使用某个服务。
+- `INTERNAL (code 13)`: Kritor内部出现问题，例如数据库连接失败或者其他异常。
 
 我们通过几个简单的Kotlin代码示例来演示如何处理请求错误。
 
@@ -64,11 +64,12 @@ suspend fun main() {
 
 Kritor推送的返回包将会提供以下状态码：
 
-- `SUCCESS`: 一切正常。
-- `INVALID_ARGUMENT`: 参数错误，例如群禁言没提供群号。
-- `UNAUTHENTICATED`: 未认证，通常是鉴权失败或者越级调用。
-- `PERMISSION_DENIED`: 权限不足，例如没有权限解除群禁言或者无权使用某个服务。
-- `INTERNAL`: Kritor内部出现问题，例如数据库连接失败或者其他异常。
+- `OK (code 0)`: 一切正常。
+- `INVALID_ARGUMENT (code 3)`: 参数错误，例如群禁言没提供群号。
+- `UNIMPLEMENTED (code 12)`: api不支持，例如协议端不支持使用uid。
+- `UNAUTHENTICATED (code 16)`: 未认证，通常是鉴权失败或者越级调用。
+- `PERMISSION_DENIED (code 7)`: 权限不足，例如没有权限解除群禁言或者无权使用某个服务。
+- `INTERNAL (code 13)`: Kritor内部出现问题，例如数据库连接失败或者其他异常。
 
 详细信息可以查看，请求包与返回包的[定义](/protos/src/main/proto/kritor/comm_request.proto)。
 
