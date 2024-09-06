@@ -14,7 +14,7 @@ option java_package = "io.kritor.common";
 option go_package = "grpc/kritor/common";
 
 enum Scene {
-  UNSPECIFIED = 0; // 
+  UNSPECIFIED = 0; // 保留字段, UNSPECIFIED
   GROUP = 1; // 群聊
   FRIEND = 2; // 好友
   GUILD = 3; // 频道
