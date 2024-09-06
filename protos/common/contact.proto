@@ -14,14 +14,15 @@ option java_package = "io.kritor.common";
 option go_package = "grpc/kritor/common";
 
 enum Scene {
-  GROUP = 0; // 群聊
-  FRIEND = 1; // 好友
-  GUILD = 2; // 频道
-  STRANGER_FROM_GROUP = 10; // 群临时会话
+  UNSPECIFIED = 0; // 
+  GROUP = 1; // 群聊
+  FRIEND = 2; // 好友
+  GUILD = 3; // 频道
+  STRANGER_FROM_GROUP = 11; // 群临时会话
 
   // 以下类型为可选实现
-  NEARBY = 5; // 附近的人
-  STRANGER = 9; // 陌生人
+  NEARBY = 6; // 附近的人
+  STRANGER = 10; // 陌生人
 }
 
 enum Role {

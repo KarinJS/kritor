@@ -17,31 +17,32 @@ import "common/contact.proto";
 
 message Element {
   enum ElementType {
-    TEXT = 0;
-    AT = 1;
-    FACE = 2;
-    BUBBLE_FACE = 3;
-    REPLY = 4;
-    IMAGE = 5;
-    VOICE = 6;
-    VIDEO = 7;
-    BASKETBALL = 8;
-    DICE = 9;
-    RPS = 10;
-    POKE = 11;
-    MUSIC = 12;
-    WEATHER = 13;
-    LOCATION = 14;
-    SHARE = 15;
-    GIFT = 16;
-    MARKET_FACE = 17;
-    FORWARD = 18;
-    CONTACT = 19;
-    JSON = 20;
-    XML = 21;
-    FILE = 22;
-    MARKDOWN = 23;
-    KEYBOARD = 24;
+    UNSPECIFIED = 0;
+    TEXT = 1;
+    AT = 2;
+    FACE = 3;
+    BUBBLE_FACE = 4;
+    REPLY = 5;
+    IMAGE = 6;
+    VOICE = 7;
+    VIDEO = 8;
+    BASKETBALL = 9;
+    DICE = 10;
+    RPS = 11;
+    POKE = 12;
+    MUSIC = 13;
+    WEATHER = 14;
+    LOCATION = 15;
+    SHARE = 16;
+    GIFT = 17;
+    MARKET_FACE = 18;
+    FORWARD = 19;
+    CONTACT = 20;
+    JSON = 21;
+    XML = 22;
+    FILE = 23;
+    MARKDOWN = 24;
+    KEYBOARD = 25;
   }
   
   // be friendly to some languages that don't support oneof
@@ -101,9 +102,10 @@ message ReplyElement {
 
 message ImageElement {
   enum ImageType {
-    COMMON = 0;
-    ORIGIN = 1;
-    FLASH = 2;
+    UNSPECIFIED = 0;
+    COMMON = 1;
+    ORIGIN = 2;
+    FLASH = 3;
   }
   
   oneof data {
@@ -162,9 +164,10 @@ message CustomMusicData {
 
 message MusicElement {
   enum MusicPlatform {
-    QQ = 0;
-    NETEASE = 1;
-    CUSTOM = 10;
+    UNSPECIFIED = 0;
+    QQ = 1;
+    NETEASE = 2;
+    CUSTOM = 11;
   }
 
   MusicPlatform platform = 1;

@@ -100,8 +100,9 @@ message GroupEssenceMessageNotice {
 
 message GroupMemberIncreasedNotice {
   enum GroupMemberIncreasedType {
-    APPROVE = 0;
-    INVITE = 1;
+    UNSPECIFIED = 0;
+    APPROVE = 1;
+    INVITE = 2;
   }
 
   uint64 group_id = 1;
@@ -114,9 +115,10 @@ message GroupMemberIncreasedNotice {
 
 message GroupMemberDecreasedNotice {
   enum GroupMemberDecreasedType {
-    LEAVE = 0;
-    KICK = 1;
-    KICK_ME = 2;
+    UNSPECIFIED = 0;
+    LEAVE = 1;
+    KICK = 2;
+    KICK_ME = 3;
   }
   
   uint64 group_id = 1;
@@ -144,8 +146,9 @@ message GroupSignInNotice {
 
 message GroupMemberBanNotice {
   enum GroupMemberBanType {
-    LIFT_BAN = 0;
-    BAN = 1;
+    UNSPECIFIED = 0;
+    LIFT_BAN = 1;
+    BAN = 2;
   }
   
   uint64 group_id = 1;
