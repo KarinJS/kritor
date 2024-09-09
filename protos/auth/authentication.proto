@@ -32,10 +32,11 @@ message AuthenticateRequest {
 
 message AuthenticateResponse {
   enum AuthenticateResponseCode {
-    OK = 0;
-    NO_ACCOUNT = 1;
-    NO_TICKET = 2;
-    LOGIC_ERROR = 3;
+    UNSPECIFIED = 0;
+    OK = 1;
+    NO_ACCOUNT = 2;
+    NO_TICKET = 3;
+    LOGIC_ERROR = 4;
   }
 
   AuthenticateResponseCode code = 1; // 认证结果
@@ -54,8 +55,9 @@ message GetAuthenticationStateResponse {
 /* 所有对认证ticket增删查都需要使用super ticket */
 
 enum TicketOperationResponseCode {
-  OK = 0;
-  ERROR = 1;
+  UNSPECIFIED = 0;
+  OK = 1;
+  ERROR = 2;
 }
 
 message GetTicketRequest {

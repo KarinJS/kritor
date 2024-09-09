@@ -10,7 +10,7 @@
 
 ```protobuf
 enum RequestType {
-  UNKNOWN = 0;
+  UNKNOWN = 0; // 保留字段, UNSPECIFIED
   
   FRIEND_APPLY = 10;
   GROUP_APPLY = 11;

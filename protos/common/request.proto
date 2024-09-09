@@ -22,11 +22,12 @@ message Request {
 
 message Response {
   enum ResponseCode {
-    SUCCESS = 0;
-    INVALID_ARGUMENT = 1;
-    INTERNAL = 2;
-    UNAUTHENTICATED = 3;
-    PERMISSION_DENIED = 4;
+    UNSPECIFIED = 0;
+    SUCCESS = 1;
+    INVALID_ARGUMENT = 2;
+    INTERNAL = 3;
+    UNAUTHENTICATED = 4;
+    PERMISSION_DENIED = 5;
   }
 
   string cmd = 1;

@@ -10,7 +10,7 @@
 
 ```protobuf
 enum NoticeType {
-  UNKNOWN = 0;
+  UNKNOWN = 0; // 保留字段, UNSPECIFIED
 
   PRIVATE_POKE = 10; // 私聊头像戳一戳
   PRIVATE_RECALL = 11; // 私聊消息撤回
